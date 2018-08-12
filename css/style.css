@@ -1,0 +1,234 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #1C242D;
+    color: #cccccc;
+}
+.hero img {
+    display: block;
+    margin: auto;
+    width: 400px;
+}
+.hero .btn-lg {
+    margin: auto;
+    display: block;
+    width: 180px;
+    color: #FFF;
+    font-size: 18px;
+    border-radius: 30px;
+}
+.hero p {
+    width: 400px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 14px;
+}
+.hero .form-group {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+.form-control {
+    border-radius: 40px;
+}
+h1 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #FFF;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+    font-family: 'Caveat Brush', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-size: 3rem;
+    color: #FFF;
+}
+.navbar-dark {
+    background: #242F39;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #265e7d;
+    border-color: #234254;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2e6a8c;
+    border-color: #234254;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #356f90;
+    border-color: #234254;
+}
+.btn {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+}
+a, a:visited {
+    color: #4ba2d2;
+}
+label {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.world img {
+    display: block;
+    margin: auto;
+    position: relative;
+}
+.pet {}
+.pet-container {
+    transition: all 2.4s;
+    transition-timing-function: linear;
+    z-index: 10;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    left: 0;
+    height: 164px;
+    width: 163px;
+    pointer-events: none;
+}
+.tree {
+    z-index: 1;
+    top: -315px;
+    left: -110px;
+}
+.bed {
+    z-index: 1;
+    top: -430px;
+    left: 100px;
+}
+.bean {
+    transition: all 1s;
+    top: -430px;
+    left: 50px;
+}
+/* WINDOWS */
+
+.window {
+    display: none;
+    font-family: Consolas, monospace;
+    color: #FFF;
+    z-index: 20;
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -300px;
+    background: #242f39;
+    border: 1px solid #CCC;
+    padding: 3px;
+    cursor: move;
+}
+.inner {
+    margin-top: 24px;
+    border: 1px solid #CCC;
+    background: #1c242d;
+    width: 100%;
+    height: calc(100% - 24px);
+    padding: 1rem;
+    cursor: default;
+    display: none;
+    overflow: auto;
+}
+.window .icon {
+    height: 70px;
+    width: 70px;
+    border-radius: 2px;
+    border: 1px solid #FFF;
+    display: inline-block;
+    float: left;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.window .icon-lg {
+    height: 100px;
+    width: 100px;
+}
+.window .icon-row {
+    clear: both;
+}
+.window h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.window .btn {
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    padding: 2px 8px;
+}
+.window h4 {
+    font-size: 1.5rem;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 1rem;
+}
+.window small {
+    font-size: 11px;
+    padding-bottom: 1rem;
+    display: block;
+}
+.item-desc {
+    font-size: 12px;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+.item-type {
+    margin-top: 1rem;
+    border-bottom: dotted 1px #888;
+    font-style: italic;
+    font-size: 14px;
+    color: #888;
+    text-transform:capitalize;
+}
+#product .icon,
+#item .icon {
+    float: none;
+}
+
+#toybox-home > div {
+    clear: both;
+}
+
+#toybox-home h4 {
+    margin-bottom: 1rem;
+    border-bottom: dotted 1px #888;
+}
+
+.close-window {
+    border: 1px solid #CCC;
+    padding: 1px 5px;
+    line-height: 16px;
+    cursor: default;
+}
+
+/**/
+
+.hat {
+    position: absolute !important;
+    top: 36px;
+    z-index: 5;
+}
+
+.dim {
+    opacity: 0.5;
+}
+
+.owned {
+    cursor: default;
+}
