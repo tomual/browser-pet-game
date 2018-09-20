@@ -36,7 +36,7 @@ $(function() {
         shop = result;
         types.forEach(function (type) {
             for (var i = 0; i < shop[type].length; i++) {
-                $('#shop-' + type + ' .icon-row').append('<a class="product icon" data-id="' + shop[type][i].id + '" data-type="' + shop[type][i].type + '"><img src="/cocobox/img/equip/' + shop[type][i].type + shop[type][i].id + '-icon.gif"></a>');
+                $('#shop-' + type + ' .icon-row').append('<a class="product icon" data-id="' + shop[type][i].id + '" data-type="' + shop[type][i].type + '"><img src="' + base_url + 'img/equip/' + shop[type][i].type + shop[type][i].id + '-icon.gif"></a>');
             }
         });
     })
@@ -44,7 +44,7 @@ $(function() {
         toybox = result;
         types.forEach(function (type) {
             for (var i = 0; i < toybox[type].length; i++) {
-                $('#toybox-' + type + ' .icon-row').append('<a class="item icon" data-id="' + toybox[type][i].id + '" data-type="' + toybox[type][i].type + '"><img src="/cocobox/img/equip/' + toybox[type][i].type + toybox[type][i].id + '-icon.gif"></a>');
+                $('#toybox-' + type + ' .icon-row').append('<a class="item icon" data-id="' + toybox[type][i].id + '" data-type="' + toybox[type][i].type + '"><img src="' + base_url + 'img/equip/' + toybox[type][i].type + toybox[type][i].id + '-icon.gif"></a>');
             }
         });
     })
@@ -64,7 +64,7 @@ $('.icon-row').on('click', '.product', function() {
     $('#product .item-name').text(product.name);
     $('#product .item-price').text(product.price);
     $('#product .item-desc').text(product.description);
-    $('#product .icon img').attr('src', '/cocobox/img/equip/' + product.type + product.id + '-icon.gif');
+    $('#product .icon img').attr('src', base_url + 'img/equip/' + product.type + product.id + '-icon.gif');
     $('#shop .inner').hide();
     $('#product .back').attr('data-link', 'shop-' + getTypeLabel(product.type));
     $('#product .back').html('&laquo; Back to ' + getTypeLabel(product.type));
@@ -85,7 +85,7 @@ $('.icon-row').on('click', '.item', function() {
     $('.item-type').text(getTypeLabel(item.type));
     $('.item-name').text(item.name);
     $('.item-desc').text(item.description);
-    $('#item .icon img').attr('src', '/cocobox/img/equip/' + item.type + item.id + '-icon.gif');
+    $('#item .icon img').attr('src', base_url + 'img/equip/' + item.type + item.id + '-icon.gif');
     $('#toybox .inner').hide();
     if(itemEquipped(item.type, item.id)) {
         $('#item .equip').hide();
