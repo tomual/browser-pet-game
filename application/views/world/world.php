@@ -30,9 +30,9 @@
                 <div class="messages"></div>
                 <div class="form">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Message">
+                        <input type="text" class="form-control" placeholder="Message" name="message">
                         <div class="input-group-append">
-                            <button class="input-group-text btn">Send</button>
+                            <button type="button" class="input-group-text btn">Send</button>
                         </div>
                     </div>
                 </div>
@@ -154,5 +154,6 @@
 <script>
     var pet = <?php echo json_encode($pet) ?>;
     var baseUrl = '<?php echo base_url() ?>';
+    var username = '<?php echo $this->user->username ?>';
 </script>
 <?php $this->load->view('footer') ?>

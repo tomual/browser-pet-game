@@ -25,6 +25,25 @@ $('.bean').on('click', function() {
     });
 });
 
+$(".chat input").on('keyup', function (event) {
+    if (event.keyCode == 13) {
+        sendChat();
+    }
+});
+
+$('.chat button').on('click', function() {
+    sendChat();
+});
+
+function sendChat() {
+    var message = $('[name=message]').val();
+    $('.messages').append("<div>" + username + ": " + message + "</div>");
+    $('[name=message]').val('');
+    $.post("chat/send", {message: message}, function(result) {
+        console.log(result);
+    });
+}
+
 $(function() {
     $(".window").draggable({
         start: function() {
