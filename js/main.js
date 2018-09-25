@@ -9,21 +9,22 @@ $('.bean').on('click', function() {
     $('.bean').css('transform', 'scale(0)');
     $.get("collect/bean", function(result) {
         if (parseInt(result)) {
-            var currentNumber = parseInt($('#my-beans').text());
-            $({
-                numberValue: currentNumber
-            }).animate({
-                numberValue: currentNumber + 12
-            }, {
-                duration: 500,
-                easing: 'linear',
-                step: function() {
-                    $('#my-beans').text(Math.floor(this.numberValue + 1));
-                }
-            });
+            animateBeanCount(12);
         }
     });
 });
+
+function animateBeanCount(addened) {
+    var current = parseInt($('#my-beans').text());
+    $({numberValue: current})
+    .animate({numberValue: current + addened}, {
+        duration: 500,
+        easing: 'linear',
+        step: function() {
+            $('#my-beans').text(Math.floor(this.numberValue + 1));
+        }
+    });
+}
 
 $(".chat input").on('keyup', function (event) {
     if (event.keyCode == 13) {
@@ -183,6 +184,8 @@ function buyItem()
     $.get("shop/buy/" + product.id, function(result) {
         if(result.type == 'error') {
             $('#product .error').text(result.message);
+        } else {
+            animateBeanCount(-product.price);
         }
     })
 }
