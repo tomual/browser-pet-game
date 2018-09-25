@@ -1,7 +1,4 @@
 <?php $this->load->view('header') ?>
-<script>
-    var map = <?php echo json_encode($map) ?>;
-</script>
 <link href="<?php echo base_url('css/world.css') ?>" rel="stylesheet">
 
 <div class="game">
@@ -27,7 +24,11 @@
         </div>
         <div class="right">
             <div class="chat">
-                <div class="messages"></div>
+                <div class="messages">
+                    <?php foreach($chat as $message): ?>
+                        <div><b><?php echo $message->username ?></b>: <?php echo $message->message ?></div>
+                    <?php endforeach ?>
+                </div>
                 <div class="form">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Message" name="message">
@@ -152,7 +153,10 @@
 </div>
 
 <script>
+
+    var map = <?php echo json_encode($map) ?>;
     var pet = <?php echo json_encode($pet) ?>;
+    var chat = <?php echo json_encode($chat) ?>;
     var baseUrl = '<?php echo base_url() ?>';
     var username = '<?php echo $this->user->username ?>';
 </script>

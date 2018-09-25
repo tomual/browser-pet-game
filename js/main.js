@@ -37,7 +37,7 @@ $('.chat button').on('click', function() {
 
 function sendChat() {
     var message = $('[name=message]').val();
-    $('.messages').append("<div>" + username + ": " + message + "</div>");
+    $('.messages').append("<div><b>" + username + "</b>: " + message + "</div>");
     $('[name=message]').val('');
     $.post("chat/send", {message: message}, function(result) {
         console.log(result);
