@@ -13,10 +13,16 @@
     <div class="game-container">
         <div class="left">
             <div class="world" style="background: url('<?php echo item_image_url('l', $map->land_id) ?>')">
-                <div class="pet-container">
+                <div class="pet-container" data-user-id="<?php echo $this->user->id ?>">
                     <img src="" class="hat">
                     <img src="" class="pet">
                 </div>
+                <?php foreach ($pets as $otherpet): ?>
+                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>">
+                        <img src="" class="hat">
+                        <img src="" class="pet">
+                    </div>
+                <?php endforeach ?>
                 <img src="<?php echo item_image_url('t', $map->tree_id) ?>" class="tree">
                 <img src="<?php echo item_image_url('b', $map->bed_id) ?>" class="bed">
                 <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
@@ -156,6 +162,7 @@
 
     var map = <?php echo json_encode($map) ?>;
     var pet = <?php echo json_encode($pet) ?>;
+    var pets = <?php echo json_encode($pets) ?>;
     var chat = <?php echo json_encode($chat) ?>;
     var baseUrl = '<?php echo base_url() ?>';
     var username = '<?php echo $this->user->username ?>';

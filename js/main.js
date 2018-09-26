@@ -5,6 +5,11 @@ var item = {};
 var windowZ = 10;
 var types = ['hats', 'trees', 'beds', 'land'];
 
+if (pets.length) {
+    console.log(pets[0]);
+
+}
+
 $('.bean').on('click', function() {
     $('.bean').css('transform', 'scale(0)');
     $.get("collect/bean", function(result) {
@@ -226,8 +231,8 @@ function equipHat(hat_id)
 {
     pet.gif.hat.idle = baseUrl + 'img/equip/h' + hat_id + '.gif';
     pet.gif.hat.walk = baseUrl + 'img/equip/h' + hat_id + '_walk.gif';
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
+    updatePetImage(pet.user_id, pet.gif.idle);
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
 
     $.get("pet/equip/" + hat_id, function(result) {
         console.log(result);
@@ -268,12 +273,21 @@ function unequipHat(hat_id)
 {
     pet.gif.hat.idle = null;
     pet.gif.hat.walk = null;
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
-
+    updatePetImage(pet.user_id, pet.gif.idle);
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
     $.get("pet/unequip/", function(result) {
         console.log(result);
     })
+}
+
+function updatePetImage(user_id, image)
+{
+    $('[data-user-id=' + user_id + '] .pet').attr('src', image);
+}
+
+function updateHatImage(user_id, image)
+{
+    $('[data-user-id=' + user_id + '] .hat').attr('src', image);
 }
 
 function unequipTree(tree_id)

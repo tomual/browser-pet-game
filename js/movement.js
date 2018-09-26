@@ -16,9 +16,20 @@ if(pet.hat_id) {
     pet.gif.hat.walk = null;
 }
 
+for (var i = pets.length - 1; i >= 0; i--) {
+    pets[i].gif = {};
+    pets[i].gif.idle = baseUrl + 'img/pet/' + pets[i].race_id + '.gif';
+    pets[i].gif.walk =  baseUrl + 'img/pet/' + pets[i].race_id + '_walk.gif';
+}
+
 $( document ).ready(function() {
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
+    updatePetImage(pet.user_id, pet.gif.idle);
+    for (var i = pets.length - 1; i >= 0; i--) {
+        updatePetImage(pets[i].user_id, pets[i].gif.idle);
+        console.log(pets[i].user_id);
+        console.log(pets[i].gif.idle);
+    }
     window.setInterval(function(){
         randomWalk();
     }, 8000);
@@ -47,11 +58,11 @@ function walkX() {
         return false;
     }
     $('.pet-container').css('left', destinationX + 'px');
-    $('.hat').attr('src', pet.gif.hat.walk);
-    $('.pet').attr('src', pet.gif.walk);
+    updateHatImage(pet.user_id, pet.gif.hat.walk);
+    updatePetImage(pet.user_id, pet.gif.walk);
     setTimeout(function(){
-        $('.hat').attr('src', pet.gif.hat.idle);
-        $('.pet').attr('src', pet.gif.idle);
+        updateHatImage(pet.user_id, pet.gif.hat.idle);
+        updatePetImage(pet.user_id, pet.gif.idle);
     }, walkTimeout);
 }
 
@@ -68,11 +79,11 @@ function walkY() {
         return false;
     }
     $('.pet-container').css('top', destinationY + 'px');
-    $('.hat').attr('src', pet.gif.hat.walk);
-    $('.pet').attr('src', pet.gif.walk);
+    updateHatImage(pet.user_id, pet.gif.hat.walk);
+    updatePetImage(pet.user_id, pet.gif.walk);
     setTimeout(function(){
-        $('.hat').attr('src', pet.gif.hat.idle);
-        $('.pet').attr('src', pet.gif.idle);
+        updateHatImage(pet.user_id, pet.gif.hat.idle);
+        updatePetImage(pet.user_id, pet.gif.idle);
     }, walkTimeout);
 }
 
