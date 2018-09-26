@@ -80,39 +80,6 @@ label {
     letter-spacing: 1px;
     font-weight: 600;
 }
-.world img {
-    display: block;
-    margin: auto;
-    position: relative;
-}
-.pet {}
-.pet-container {
-    transition: all 2.4s;
-    transition-timing-function: linear;
-    z-index: 10;
-    margin: auto;
-    position: relative;
-    top: 100px;
-    left: 0;
-    height: 164px;
-    width: 163px;
-    pointer-events: none;
-}
-.tree {
-    z-index: 1;
-    top: -315px;
-    left: -110px;
-}
-.bed {
-    z-index: 1;
-    top: -430px;
-    left: 100px;
-}
-.bean {
-    transition: all 1s;
-    top: -430px;
-    left: 50px;
-}
 /* WINDOWS */
 
 .window {

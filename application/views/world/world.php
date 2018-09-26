@@ -17,8 +17,8 @@
                     <img src="" class="hat">
                     <img src="" class="pet">
                 </div>
-                <?php foreach ($pets as $otherpet): ?>
-                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>">
+                <?php foreach ($pets as $index => $otherpet): ?>
+                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: -100px">
                         <img src="" class="hat">
                         <img src="" class="pet">
                     </div>

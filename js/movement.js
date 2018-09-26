@@ -47,23 +47,45 @@ function walkX() {
     var distance = 0;
     if(getRandomInt(2)) {
         distance  = -10;
-        $('.pet-container img').css('transform', 'scaleX(-1)');
+        flipPet(pet.user_id, -1);
     } else {
         distance  = 10;
-        $('.pet-container img').css('transform', 'scaleX(1)');
+        flipPet(pet.user_id, 1);
     }
-    var currentX = parseInt($('.pet-container').css('left'));
+    var currentX = getPetX(pet.user_id);
     var destinationX = currentX + distance;
     if(!checkValidWalkX(destinationX)) {
         return false;
     }
-    $('.pet-container').css('left', destinationX + 'px');
+    movePetX(pet.user_id, destinationX);
     updateHatImage(pet.user_id, pet.gif.hat.walk);
     updatePetImage(pet.user_id, pet.gif.walk);
     setTimeout(function(){
         updateHatImage(pet.user_id, pet.gif.hat.idle);
         updatePetImage(pet.user_id, pet.gif.idle);
     }, walkTimeout);
+}
+
+function getPetX(user_id) {
+    var x = $('[data-user-id=' + user_id + ']').css('left');
+    return parseInt(x);
+}
+
+function movePetX(user_id, destinationX) {
+    $('[data-user-id=' + user_id + ']').css('left', destinationX + 'px');
+}
+
+function getPetY(user_id) {
+    var y = $('[data-user-id=' + user_id + ']').css('top');
+    return parseInt(y);
+}
+
+function movePetY(user_id, destinationY) {
+    $('[data-user-id=' + user_id + ']').css('top', destinationY + 'px');
+}
+
+function flipPet(user_id, scaleX) {
+    $('[data-user-id=' + user_id + '] img').css('transform', 'scaleX(' + scaleX + ')');
 }
 
 function walkY() {
@@ -73,12 +95,12 @@ function walkY() {
     } else {
         distance  = 10;
     }
-    var currentY = parseInt($('.pet-container').css('top'));
+    var currentY = getPetY(pet.user_id);
     var destinationY = currentY + distance;
     if(!checkValidWalkY(destinationY)) {
         return false;
     }
-    $('.pet-container').css('top', destinationY + 'px');
+    movePetY(pet.user_id, destinationY);
     updateHatImage(pet.user_id, pet.gif.hat.walk);
     updatePetImage(pet.user_id, pet.gif.walk);
     setTimeout(function(){
