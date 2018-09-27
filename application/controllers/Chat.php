@@ -6,7 +6,8 @@ class Chat extends MY_Controller
 
     public function get()
     {
-        $messages = $this->chat_model->get();
+        $location = $this->location_model->get_by_user_id($this->user->id);
+        $messages = $this->chat_model->get_recent_by_map_id($location->map_id);
         header('Content-Type: application/json');
         echo json_encode($messages);
         return;

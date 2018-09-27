@@ -339,3 +339,14 @@ function setToyboxButton($mode) {
         $('#item .unequip').hide();
     }
 }
+
+$(document).ready(function() {
+    window.setInterval(function(){
+        $.get("chat/get", function(result) {
+            $('.messages').empty();
+            for (var i = 0; i < result.length; i++) {
+                $('.messages').append("<div><b>" + result[i].username + "</b>: " + result[i].message + "</div>");
+            }
+        })
+    }, 2000);
+});
