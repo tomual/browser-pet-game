@@ -25,10 +25,10 @@ for (var i = pets.length - 1; i >= 0; i--) {
 $( document ).ready(function() {
     updateHatImage(pet.user_id, pet.gif.hat.idle);
     updatePetImage(pet.user_id, pet.gif.idle);
+    updateZIndex(pet.user_id);
     for (var i = pets.length - 1; i >= 0; i--) {
         updatePetImage(pets[i].user_id, pets[i].gif.idle);
-        console.log(pets[i].user_id);
-        console.log(pets[i].gif.idle);
+        updateZIndex(pets[i].user_id);
     }
     window.setInterval(function(){
         randomWalk();
@@ -66,28 +66,6 @@ function walkX() {
     }, walkTimeout);
 }
 
-function getPetX(user_id) {
-    var x = $('[data-user-id=' + user_id + ']').css('left');
-    return parseInt(x);
-}
-
-function movePetX(user_id, destinationX) {
-    $('[data-user-id=' + user_id + ']').css('left', destinationX + 'px');
-}
-
-function getPetY(user_id) {
-    var y = $('[data-user-id=' + user_id + ']').css('top');
-    return parseInt(y);
-}
-
-function movePetY(user_id, destinationY) {
-    $('[data-user-id=' + user_id + ']').css('top', destinationY + 'px');
-}
-
-function flipPet(user_id, scaleX) {
-    $('[data-user-id=' + user_id + '] img').css('transform', 'scaleX(' + scaleX + ')');
-}
-
 function walkY() {
     var distance = 0;
     if(getRandomInt(2)) {
@@ -107,6 +85,34 @@ function walkY() {
         updateHatImage(pet.user_id, pet.gif.hat.idle);
         updatePetImage(pet.user_id, pet.gif.idle);
     }, walkTimeout);
+}
+
+function getPetX(user_id) {
+    var x = $('[data-user-id=' + user_id + ']').css('left');
+    return parseInt(x);
+}
+
+function movePetX(user_id, destinationX) {
+    $('[data-user-id=' + user_id + ']').css('left', destinationX + 'px');
+}
+
+function getPetY(user_id) {
+    var y = $('[data-user-id=' + user_id + ']').css('top');
+    return parseInt(y);
+}
+
+function movePetY(user_id, destinationY) {
+    $('[data-user-id=' + user_id + ']').css('top', destinationY + 'px');
+    updateZIndex(user_id);
+}
+
+function updateZIndex(user_id) {
+    var offsetY = parseInt($($('[data-user-id=' + user_id + ']')).offset().top);
+    $('[data-user-id=' + user_id + ']').css('z-index', offsetY);
+}
+
+function flipPet(user_id, scaleX) {
+    $('[data-user-id=' + user_id + '] img').css('transform', 'scaleX(' + scaleX + ')');
 }
 
 function getRandomInt(max) {

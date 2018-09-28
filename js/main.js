@@ -2,7 +2,7 @@ var shop = [];
 var toybox = [];
 var product = {};
 var item = {};
-var windowZ = 10;
+var windowZ = 1000;
 var types = ['hats', 'trees', 'beds', 'land'];
 
 if (pets.length) {
