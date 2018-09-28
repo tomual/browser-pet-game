@@ -20,6 +20,14 @@ for (var i = pets.length - 1; i >= 0; i--) {
     pets[i].gif = {};
     pets[i].gif.idle = baseUrl + 'img/pet/' + pets[i].race_id + '.gif';
     pets[i].gif.walk =  baseUrl + 'img/pet/' + pets[i].race_id + '_walk.gif';
+    pets[i].gif.hat = {};
+    if(pets[i].hat_id) {
+        pets[i].gif.hat.idle = baseUrl + 'img/equip/h' + pets[i].hat_id + '.gif';
+        pets[i].gif.hat.walk = baseUrl + 'img/equip/h' + pets[i].hat_id + '_walk.gif';
+    } else {
+        pets[i].gif.hat.idle = null;
+        pets[i].gif.hat.walk = null;
+    }
 }
 
 $( document ).ready(function() {
@@ -32,58 +40,61 @@ $( document ).ready(function() {
     }
     window.setInterval(function(){
         randomWalk();
-    }, 8000);
+    }, 3000);
 });
 
 function randomWalk() {
+    var all_pets = pets;
+    all_pets.push(pet);
+    target = all_pets[getRandomInt(pets.length - 1)];
     if(getRandomInt(2)) {
-        walkX();
+        walkX(target);
     } else {
-        walkY();
+        walkY(target);
     }
 }
 
-function walkX() {
+function walkX(target) {
     var distance = 0;
     if(getRandomInt(2)) {
         distance  = -10;
-        flipPet(pet.user_id, -1);
+        flipPet(target.user_id, -1);
     } else {
         distance  = 10;
-        flipPet(pet.user_id, 1);
+        flipPet(target.user_id, 1);
     }
-    var currentX = getPetX(pet.user_id);
+    var currentX = getPetX(target.user_id);
     var destinationX = currentX + distance;
     if(!checkValidWalkX(destinationX)) {
         return false;
     }
-    movePetX(pet.user_id, destinationX);
-    updateHatImage(pet.user_id, pet.gif.hat.walk);
-    updatePetImage(pet.user_id, pet.gif.walk);
+    movePetX(target.user_id, destinationX);
+    updateHatImage(target.user_id, target.gif.hat.walk);
+    updatePetImage(target.user_id, target.gif.walk);
     setTimeout(function(){
-        updateHatImage(pet.user_id, pet.gif.hat.idle);
-        updatePetImage(pet.user_id, pet.gif.idle);
+        updateHatImage(target.user_id, target.gif.hat.idle);
+        updatePetImage(target.user_id, target.gif.idle);
     }, walkTimeout);
 }
 
-function walkY() {
+function walkY(target) {
     var distance = 0;
     if(getRandomInt(2)) {
         distance  = -10;
     } else {
         distance  = 10;
     }
-    var currentY = getPetY(pet.user_id);
+    var currentY = getPetY(target.user_id);
     var destinationY = currentY + distance;
     if(!checkValidWalkY(destinationY)) {
         return false;
     }
-    movePetY(pet.user_id, destinationY);
-    updateHatImage(pet.user_id, pet.gif.hat.walk);
-    updatePetImage(pet.user_id, pet.gif.walk);
+    movePetY(target.user_id, destinationY);
+    updateHatImage(target.user_id, target.gif.hat.walk);
+    updatePetImage(target.user_id, target.gif.walk);
     setTimeout(function(){
-        updateHatImage(pet.user_id, pet.gif.hat.idle);
-        updatePetImage(pet.user_id, pet.gif.idle);
+        updateHatImage(target.user_id, target.gif.hat.idle);
+        updatePetImage(target.user_id, target.gif.idle);
     }, walkTimeout);
 }
 
