@@ -57,10 +57,10 @@ function randomWalk() {
 function walkX(target) {
     var distance = 0;
     if(getRandomInt(2)) {
-        distance  = -10;
+        distance  = -20;
         flipPet(target.user_id, -1);
     } else {
-        distance  = 10;
+        distance  = 20;
         flipPet(target.user_id, 1);
     }
     var currentX = getPetX(target.user_id);

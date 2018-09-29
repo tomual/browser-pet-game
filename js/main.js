@@ -191,6 +191,9 @@ function buyItem()
             $('#product .error').text(result.message);
         } else {
             animateBeanCount(-product.price);
+            $('#product .buy').hide();
+            $('#product .owned').show();
+            addItemToToybox(product);
         }
     })
 }
@@ -330,14 +333,18 @@ function openTravel() {
     $('#travel').css('z-index', ++windowZ);
 }
 
-function setToyboxButton($mode) {
-    if($mode == 'equip') {
+function setToyboxButton(mode) {
+    if(mode == 'equip') {
         $('#item .equip').hide();
         $('#item .unequip').show();
     } else {
         $('#item .equip').show();
         $('#item .unequip').hide();
     }
+}
+
+function addItemToToybox(item) {
+    $('#toybox-' + getTypeLabel(item.type) + ' .icon-row').append('<a class="item icon" data-id="' + item.id + '" data-type="' + item.type + '"><img src="' + base_url + 'img/equip/' + item.type + item.id + '-icon.gif"></a>');
 }
 
 $(document).ready(function() {
