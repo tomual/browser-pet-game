@@ -146,15 +146,18 @@
 <div class="window" id="travel">
     <div class="header float-left">Travel</div>
     <div class="close-window float-right" onclick="closeWindow(this)">x</div>
-    <div class="inner" id="shop-home" style="display:block">
-        <div class="icon-row">
-            <a class="link" data-link="shop-hats"><div class="icon icon-lg">Hats</div></a>
-            <a class="link" data-link="shop-trees"><div class="icon icon-lg">Trees</div></a>
-        </div>
-        <div class="icon-row">
-            <a class="link" data-link="shop-beds"><div class="icon icon-lg">Beds</div></a>
-            <a class="link" data-link="shop-land"><div class="icon icon-lg">Land</div></a>
-        </div>
+    <div class="inner" id="travel-home" style="display:block">
+    <h4>Public Rooms</h4>
+    <ul>
+        <a class="travel-link" data-id="1"><li>Welcome Island</li></a>
+        <a class="travel-link" data-id="2"><li>Dog Park</li></a>
+    </ul>
+    <h4>User Rooms</h4>
+    <ul>
+        <a class="travel-link" data-id="6"><li>My Room</li></a>
+    </ul>
+    <label>Search Room</label>
+    <input type="text" id="room_search">
     </div>
 </div>
 

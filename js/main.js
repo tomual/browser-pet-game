@@ -41,6 +41,7 @@ $('.chat button').on('click', function() {
     sendChat();
 });
 
+
 function sendChat() {
     var message = $('[name=message]').val();
     $('.messages').append("<div><b>" + username + "</b>: " + message + "</div>");
@@ -120,7 +121,11 @@ $('.icon-row').on('click', '.item', function() {
         $('#item .unequip').hide();
     }
     $('#item').show();
-})
+});
+
+$('.travel-link').on('click', function() {
+    console.log($(this).data('id'));
+});
 
 function itemOwned(type, item_id) {
     var owned = false;
