@@ -2,28 +2,54 @@ var shop = [];
 var toybox = [];
 var product = {};
 var item = {};
-var windowZ = 10;
+var windowZ = 1000;
 var types = ['hats', 'trees', 'beds', 'land'];
+
+if (pets.length) {
+    console.log(pets[0]);
+
+}
 
 $('.bean').on('click', function() {
     $('.bean').css('transform', 'scale(0)');
     $.get("collect/bean", function(result) {
         if (parseInt(result)) {
-            var currentNumber = parseInt($('#my-beans').text());
-            $({
-                numberValue: currentNumber
-            }).animate({
-                numberValue: currentNumber + 12
-            }, {
-                duration: 500,
-                easing: 'linear',
-                step: function() {
-                    $('#my-beans').text(Math.floor(this.numberValue + 1));
-                }
-            });
+            animateBeanCount(12);
         }
     });
 });
+
+function animateBeanCount(addened) {
+    var current = parseInt($('#my-beans').text());
+    $({numberValue: current})
+    .animate({numberValue: current + addened}, {
+        duration: 500,
+        easing: 'linear',
+        step: function() {
+            $('#my-beans').text(Math.floor(this.numberValue + 1));
+        }
+    });
+}
+
+$(".chat input").on('keyup', function (event) {
+    if (event.keyCode == 13) {
+        sendChat();
+    }
+});
+
+$('.chat button').on('click', function() {
+    sendChat();
+});
+
+
+function sendChat() {
+    var message = $('[name=message]').val();
+    $('.messages').append("<div><b>" + username + "</b>: " + message + "</div>");
+    $('[name=message]').val('');
+    $.post("chat/send", {message: message}, function(result) {
+        console.log(result);
+    });
+}
 
 $(function() {
     $(".window").draggable({
@@ -36,7 +62,7 @@ $(function() {
         shop = result;
         types.forEach(function (type) {
             for (var i = 0; i < shop[type].length; i++) {
-                $('#shop-' + type + ' .icon-row').append('<a class="product icon" data-id="' + shop[type][i].id + '" data-type="' + shop[type][i].type + '"><img src="/cocobox/img/equip/' + shop[type][i].type + shop[type][i].id + '-icon.gif"></a>');
+                $('#shop-' + type + ' .icon-row').append('<a class="product icon" data-id="' + shop[type][i].id + '" data-type="' + shop[type][i].type + '"><img src="' + base_url + 'img/equip/' + shop[type][i].type + shop[type][i].id + '-icon.gif"></a>');
             }
         });
     })
@@ -44,7 +70,7 @@ $(function() {
         toybox = result;
         types.forEach(function (type) {
             for (var i = 0; i < toybox[type].length; i++) {
-                $('#toybox-' + type + ' .icon-row').append('<a class="item icon" data-id="' + toybox[type][i].id + '" data-type="' + toybox[type][i].type + '"><img src="/cocobox/img/equip/' + toybox[type][i].type + toybox[type][i].id + '-icon.gif"></a>');
+                $('#toybox-' + type + ' .icon-row').append('<a class="item icon" data-id="' + toybox[type][i].id + '" data-type="' + toybox[type][i].type + '"><img src="' + base_url + 'img/equip/' + toybox[type][i].type + toybox[type][i].id + '-icon.gif"></a>');
             }
         });
     })
@@ -64,7 +90,7 @@ $('.icon-row').on('click', '.product', function() {
     $('#product .item-name').text(product.name);
     $('#product .item-price').text(product.price);
     $('#product .item-desc').text(product.description);
-    $('#product .icon img').attr('src', '/cocobox/img/equip/' + product.type + product.id + '-icon.gif');
+    $('#product .icon img').attr('src', base_url + 'img/equip/' + product.type + product.id + '-icon.gif');
     $('#shop .inner').hide();
     $('#product .back').attr('data-link', 'shop-' + getTypeLabel(product.type));
     $('#product .back').html('&laquo; Back to ' + getTypeLabel(product.type));
@@ -85,7 +111,7 @@ $('.icon-row').on('click', '.item', function() {
     $('.item-type').text(getTypeLabel(item.type));
     $('.item-name').text(item.name);
     $('.item-desc').text(item.description);
-    $('#item .icon img').attr('src', '/cocobox/img/equip/' + item.type + item.id + '-icon.gif');
+    $('#item .icon img').attr('src', base_url + 'img/equip/' + item.type + item.id + '-icon.gif');
     $('#toybox .inner').hide();
     if(itemEquipped(item.type, item.id)) {
         $('#item .equip').hide();
@@ -95,7 +121,11 @@ $('.icon-row').on('click', '.item', function() {
         $('#item .unequip').hide();
     }
     $('#item').show();
-})
+});
+
+$('.travel-link').on('click', function() {
+    console.log($(this).data('id'));
+});
 
 function itemOwned(type, item_id) {
     var owned = false;
@@ -164,6 +194,11 @@ function buyItem()
     $.get("shop/buy/" + product.id, function(result) {
         if(result.type == 'error') {
             $('#product .error').text(result.message);
+        } else {
+            animateBeanCount(-product.price);
+            $('#product .buy').hide();
+            $('#product .owned').show();
+            addItemToToybox(product);
         }
     })
 }
@@ -204,8 +239,8 @@ function equipHat(hat_id)
 {
     pet.gif.hat.idle = baseUrl + 'img/equip/h' + hat_id + '.gif';
     pet.gif.hat.walk = baseUrl + 'img/equip/h' + hat_id + '_walk.gif';
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
+    updatePetImage(pet.user_id, pet.gif.idle);
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
 
     $.get("pet/equip/" + hat_id, function(result) {
         console.log(result);
@@ -246,12 +281,21 @@ function unequipHat(hat_id)
 {
     pet.gif.hat.idle = null;
     pet.gif.hat.walk = null;
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
-
+    updatePetImage(pet.user_id, pet.gif.idle);
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
     $.get("pet/unequip/", function(result) {
         console.log(result);
     })
+}
+
+function updatePetImage(user_id, image)
+{
+    $('[data-user-id=' + user_id + '] .pet').attr('src', image);
+}
+
+function updateHatImage(user_id, image)
+{
+    $('[data-user-id=' + user_id + '] .hat').attr('src', image);
 }
 
 function unequipTree(tree_id)
@@ -294,8 +338,8 @@ function openTravel() {
     $('#travel').css('z-index', ++windowZ);
 }
 
-function setToyboxButton($mode) {
-    if($mode == 'equip') {
+function setToyboxButton(mode) {
+    if(mode == 'equip') {
         $('#item .equip').hide();
         $('#item .unequip').show();
     } else {
@@ -303,3 +347,18 @@ function setToyboxButton($mode) {
         $('#item .unequip').hide();
     }
 }
+
+function addItemToToybox(item) {
+    $('#toybox-' + getTypeLabel(item.type) + ' .icon-row').append('<a class="item icon" data-id="' + item.id + '" data-type="' + item.type + '"><img src="' + base_url + 'img/equip/' + item.type + item.id + '-icon.gif"></a>');
+}
+
+$(document).ready(function() {
+    window.setInterval(function(){
+        $.get("chat/get", function(result) {
+            $('.messages').empty();
+            for (var i = 0; i < result.length; i++) {
+                $('.messages').append("<div><b>" + result[i].username + "</b>: " + result[i].message + "</div>");
+            }
+        })
+    }, 2000);
+});

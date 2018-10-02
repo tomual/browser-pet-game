@@ -1,25 +1,28 @@
 <?php $this->load->view('header') ?>
-<script>
-    var map = <?php echo json_encode($map) ?>;
-</script>
 <link href="<?php echo base_url('css/world.css') ?>" rel="stylesheet">
 
 <div class="game">
     <div class="top">
         <h1>cocobox</h1>
         <div class="menu">
-            <a href="#" onclick="openToybox()"><img src="<?php echo base_url('img/toybox.gif') ?>"></a>
-            <a href="#" onclick="openShop()"><img src="<?php echo base_url('img/shop.gif') ?>"></a>
-            <a href="#" onclick="openTravel()"><img src="<?php echo base_url('img/shop.gif') ?>"></a>
+            <a href="#" onclick="openToybox()"><img src="<?php echo base_url('img/toybox.png') ?>"></a>
+            <a href="#" onclick="openShop()"><img src="<?php echo base_url('img/shop.png') ?>"></a>
+            <a href="#" onclick="openTravel()"><img src="<?php echo base_url('img/move.png') ?>"></a>
         </div>
     </div>
     <div class="game-container">
         <div class="left">
             <div class="world" style="background: url('<?php echo item_image_url('l', $map->land_id) ?>')">
-                <div class="pet-container">
+                <div class="pet-container" data-user-id="<?php echo $this->user->id ?>">
                     <img src="" class="hat">
                     <img src="" class="pet">
                 </div>
+                <?php foreach ($pets as $index => $otherpet): ?>
+                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: -100px">
+                        <img src="" class="hat">
+                        <img src="" class="pet">
+                    </div>
+                <?php endforeach ?>
                 <img src="<?php echo item_image_url('t', $map->tree_id) ?>" class="tree">
                 <img src="<?php echo item_image_url('b', $map->bed_id) ?>" class="bed">
                 <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
@@ -27,12 +30,16 @@
         </div>
         <div class="right">
             <div class="chat">
-                <div class="messages"></div>
+                <div class="messages">
+                    <?php foreach($chat as $message): ?>
+                        <div><b><?php echo $message->username ?></b>: <?php echo $message->message ?></div>
+                    <?php endforeach ?>
+                </div>
                 <div class="form">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Message">
+                        <input type="text" class="form-control" placeholder="Message" name="message">
                         <div class="input-group-append">
-                            <button class="input-group-text btn">Send</button>
+                            <button type="button" class="input-group-text btn">Send</button>
                         </div>
                     </div>
                 </div>
@@ -139,20 +146,28 @@
 <div class="window" id="travel">
     <div class="header float-left">Travel</div>
     <div class="close-window float-right" onclick="closeWindow(this)">x</div>
-    <div class="inner" id="shop-home" style="display:block">
-        <div class="icon-row">
-            <a class="link" data-link="shop-hats"><div class="icon icon-lg">Hats</div></a>
-            <a class="link" data-link="shop-trees"><div class="icon icon-lg">Trees</div></a>
-        </div>
-        <div class="icon-row">
-            <a class="link" data-link="shop-beds"><div class="icon icon-lg">Beds</div></a>
-            <a class="link" data-link="shop-land"><div class="icon icon-lg">Land</div></a>
-        </div>
+    <div class="inner" id="travel-home" style="display:block">
+    <h4>Public Rooms</h4>
+    <ul>
+        <a class="travel-link" data-id="1"><li>Welcome Island</li></a>
+        <a class="travel-link" data-id="2"><li>Dog Park</li></a>
+    </ul>
+    <h4>User Rooms</h4>
+    <ul>
+        <a class="travel-link" data-id="6"><li>My Room</li></a>
+    </ul>
+    <label>Search Room</label>
+    <input type="text" id="room_search">
     </div>
 </div>
 
 <script>
+
+    var map = <?php echo json_encode($map) ?>;
     var pet = <?php echo json_encode($pet) ?>;
+    var pets = <?php echo json_encode($pets) ?>;
+    var chat = <?php echo json_encode($chat) ?>;
     var baseUrl = '<?php echo base_url() ?>';
+    var username = '<?php echo $this->user->username ?>';
 </script>
 <?php $this->load->view('footer') ?>

@@ -14,6 +14,7 @@
 }
 
 .world {
+    position: relative;
     float: left;
     border: 3px double #ccc;
     height: 500px;
@@ -62,6 +63,16 @@
     box-shadow: none;
 }
 
+.messages {
+    position: absolute;
+    bottom: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100% - 40px);
+    width: 100%;
+    padding: .375rem .75rem;
+}
+
 .game-container {
     clear: both;
 }
@@ -73,11 +84,41 @@
 }
 
 .tree {
+    position: absolute;
     height: 413px;
     width: 222px;
+    z-index: 1;
+    top: -145px;
+    left: 50px;
 }
 
 .bed {
     height: 117px;
     width: 209px;
+    z-index: 1;
+    top: -430px;
+    left: 100px;
+}
+
+.world img {
+    display: block;
+    position: absolute;
+}
+.pet {}
+.pet-container {
+    transition: all 2.4s;
+    transition-timing-function: linear;
+    z-index: 10;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    left: 0;
+    height: 164px;
+    width: 163px;
+    pointer-events: none;
+}
+.bean {
+    transition: all 1s;
+    top: 260px;
+    left: 350px;
 }

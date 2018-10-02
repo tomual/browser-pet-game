@@ -16,64 +16,114 @@ if(pet.hat_id) {
     pet.gif.hat.walk = null;
 }
 
-$( document ).ready(function() {
-    $('.hat').attr('src', pet.gif.hat.idle);
-    $('.pet').attr('src', pet.gif.idle);
-    window.setInterval(function(){
-        randomWalk();
-    }, 8000);
-});
-
-function randomWalk() {
-    if(getRandomInt(2)) {
-        walkX();
+for (var i = pets.length - 1; i >= 0; i--) {
+    pets[i].gif = {};
+    pets[i].gif.idle = baseUrl + 'img/pet/' + pets[i].race_id + '.gif';
+    pets[i].gif.walk =  baseUrl + 'img/pet/' + pets[i].race_id + '_walk.gif';
+    pets[i].gif.hat = {};
+    if(pets[i].hat_id) {
+        pets[i].gif.hat.idle = baseUrl + 'img/equip/h' + pets[i].hat_id + '.gif';
+        pets[i].gif.hat.walk = baseUrl + 'img/equip/h' + pets[i].hat_id + '_walk.gif';
     } else {
-        walkY();
+        pets[i].gif.hat.idle = null;
+        pets[i].gif.hat.walk = null;
     }
 }
 
-function walkX() {
+$( document ).ready(function() {
+    updateHatImage(pet.user_id, pet.gif.hat.idle);
+    updatePetImage(pet.user_id, pet.gif.idle);
+    updateZIndex(pet.user_id);
+    for (var i = pets.length - 1; i >= 0; i--) {
+        updatePetImage(pets[i].user_id, pets[i].gif.idle);
+        updateZIndex(pets[i].user_id);
+    }
+    window.setInterval(function(){
+        randomWalk();
+    }, 3000);
+});
+
+function randomWalk() {
+    var all_pets = pets;
+    all_pets.push(pet);
+    target = all_pets[getRandomInt(pets.length - 1)];
+    if(getRandomInt(2)) {
+        walkX(target);
+    } else {
+        walkY(target);
+    }
+}
+
+function walkX(target) {
     var distance = 0;
     if(getRandomInt(2)) {
-        distance  = -10;
-        $('.pet-container img').css('transform', 'scaleX(-1)');
+        distance  = -20;
+        flipPet(target.user_id, -1);
     } else {
-        distance  = 10;
-        $('.pet-container img').css('transform', 'scaleX(1)');
+        distance  = 20;
+        flipPet(target.user_id, 1);
     }
-    var currentX = parseInt($('.pet-container').css('left'));
+    var currentX = getPetX(target.user_id);
     var destinationX = currentX + distance;
     if(!checkValidWalkX(destinationX)) {
         return false;
     }
-    $('.pet-container').css('left', destinationX + 'px');
-    $('.hat').attr('src', pet.gif.hat.walk);
-    $('.pet').attr('src', pet.gif.walk);
+    movePetX(target.user_id, destinationX);
+    updateHatImage(target.user_id, target.gif.hat.walk);
+    updatePetImage(target.user_id, target.gif.walk);
     setTimeout(function(){
-        $('.hat').attr('src', pet.gif.hat.idle);
-        $('.pet').attr('src', pet.gif.idle);
+        updateHatImage(target.user_id, target.gif.hat.idle);
+        updatePetImage(target.user_id, target.gif.idle);
     }, walkTimeout);
 }
 
-function walkY() {
+function walkY(target) {
     var distance = 0;
     if(getRandomInt(2)) {
         distance  = -10;
     } else {
         distance  = 10;
     }
-    var currentY = parseInt($('.pet-container').css('top'));
+    var currentY = getPetY(target.user_id);
     var destinationY = currentY + distance;
     if(!checkValidWalkY(destinationY)) {
         return false;
     }
-    $('.pet-container').css('top', destinationY + 'px');
-    $('.hat').attr('src', pet.gif.hat.walk);
-    $('.pet').attr('src', pet.gif.walk);
+    movePetY(target.user_id, destinationY);
+    updateHatImage(target.user_id, target.gif.hat.walk);
+    updatePetImage(target.user_id, target.gif.walk);
     setTimeout(function(){
-        $('.hat').attr('src', pet.gif.hat.idle);
-        $('.pet').attr('src', pet.gif.idle);
+        updateHatImage(target.user_id, target.gif.hat.idle);
+        updatePetImage(target.user_id, target.gif.idle);
     }, walkTimeout);
+}
+
+function getPetX(user_id) {
+    var x = $('[data-user-id=' + user_id + ']').css('left');
+    return parseInt(x);
+}
+
+function movePetX(user_id, destinationX) {
+    $('[data-user-id=' + user_id + ']').css('left', destinationX + 'px');
+}
+
+function getPetY(user_id) {
+    var y = $('[data-user-id=' + user_id + ']').css('top');
+    return parseInt(y);
+}
+
+function movePetY(user_id, destinationY) {
+    $('[data-user-id=' + user_id + ']').css('top', destinationY + 'px');
+    updateZIndex(user_id);
+}
+
+function updateZIndex(user_id) {
+    var offsetY = parseInt($($('[data-user-id=' + user_id + ']')).offset().top);
+    $('[data-user-id=' + user_id + ']').css('z-index', offsetY);
+}
+
+function flipPet(user_id, scaleX) {
+    $('[data-user-id=' + user_id + '] img').css('transform', 'scaleX(' + scaleX + ')');
 }
 
 function getRandomInt(max) {

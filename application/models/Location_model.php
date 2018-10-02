@@ -18,6 +18,16 @@ class Location_model extends CI_Model {
         return null;
     }
 
+    public function get_pets_in_map($map_id) {
+        $this->db->select('locations.*, race_id');
+        $this->db->where('map_id', $map_id);
+        $this->db->where('user_id !=', $this->user->id);
+        $this->db->from('locations');
+        $this->db->join('pets', 'user_id', 'left');
+        $pets = $this->db->get()->result();
+        return $pets;
+    }
+
     public function set_to_home($user_id) {
         $home = $this->home_model->get_by_user_id($user_id);
         return $this->set($user_id, $home->map_id);
