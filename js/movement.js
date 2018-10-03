@@ -33,10 +33,10 @@ for (var i = pets.length - 1; i >= 0; i--) {
 $( document ).ready(function() {
     updateHatImage(pet.user_id, pet.gif.hat.idle);
     updatePetImage(pet.user_id, pet.gif.idle);
-    updateZIndex(pet.user_id);
+    updatePetZIndex(pet.user_id);
     for (var i = pets.length - 1; i >= 0; i--) {
         updatePetImage(pets[i].user_id, pets[i].gif.idle);
-        updateZIndex(pets[i].user_id);
+        updatePetZIndex(pets[i].user_id);
     }
     window.setInterval(function(){
         randomWalk();
@@ -114,10 +114,10 @@ function getPetY(user_id) {
 
 function movePetY(user_id, destinationY) {
     $('[data-user-id=' + user_id + ']').css('top', destinationY + 'px');
-    updateZIndex(user_id);
+    updatePetZIndex(user_id);
 }
 
-function updateZIndex(user_id) {
+function updatePetZIndex(user_id) {
     var offsetY = parseInt($($('[data-user-id=' + user_id + ']')).offset().top);
     $('[data-user-id=' + user_id + ']').css('z-index', offsetY);
 }

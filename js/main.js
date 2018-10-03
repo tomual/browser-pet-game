@@ -12,6 +12,9 @@ if (pets.length) {
 
 $('.world').on('click', '.bean', function () {
     $('.bean').css('transform', 'scale(0)');
+    setTimeout(function(){
+        $('.bean').remove();
+    }, 1000);
     $.get("collect/bean", function (result) {
         if (parseInt(result)) {
             animateBeanCount(12);
@@ -326,9 +329,12 @@ function updateChat() {
 function updateBean() {
     if (!$(".bean").length) {
         $.get("collect/check/bean", function (result) {
-            console.log(result);
             if (result == '1') {
-                $('.world').append("<img src=\"" + base_url + "img/loot/bean.png\" class=\"bean\">");
+                var x = getPetX(pet.user_id);
+                var y = getPetY(pet.user_id) - 25;
+                $('.world').append("<img src='" + base_url + "img/loot/bean.png' class='bean' style='top:" + y + "px; left: " + x + "px;'>");
+                var z = parseInt($($('.bean')).offset().top) - 140;
+                $('.bean').css('z-index', z);
             }
         })
     }
@@ -343,7 +349,7 @@ $(document).ready(function () {
 
     window.setInterval(function () {
         updateBean();
-    }, 5000);
+    }, 2000);
     
     // Init draggable windows
     $(".window").draggable({

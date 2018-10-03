@@ -117,8 +117,10 @@
     width: 163px;
     pointer-events: none;
 }
-.bean {
+img.bean {
     transition: all 1s;
-    top: 260px;
-    left: 350px;
+    position: relative;
+    margin: auto;
+    top: 60px;
+    left: 50px;
 }
