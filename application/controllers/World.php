@@ -8,6 +8,7 @@ class World extends Authenticated_Controller {
 		$map = $this->map_model->get($location->map_id);
 		$pets = $this->location_model->get_pets_in_map($map->id);
 		$chat = $this->chat_model->get_recent_by_map_id($map->id);
-		$this->load->view('world/world', compact('pet', 'map', 'chat','pets'));
+		$bean = $this->collection_model->available_for_collect($this->user->id, 'bean');
+		$this->load->view('world/world', compact('pet', 'map', 'chat','pets', 'bean'));
 	}
 }

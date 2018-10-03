@@ -40,7 +40,7 @@ $( document ).ready(function() {
     }
     window.setInterval(function(){
         randomWalk();
-    }, 3000);
+    }, 8000);
 });
 
 function randomWalk() {

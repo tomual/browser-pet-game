@@ -5,10 +5,11 @@ class Collect extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('collection_model');
-    }
+	}
+	
 	public function bean()
 	{
-		$collected = $this->collection_model->collect($this->user->id);
+		$collected = $this->collection_model->collect($this->user->id, 'bean');
 		if($collected) {
 			$this->currency_model->add_beans($this->user->id, 12);
 			echo 1;
@@ -16,5 +17,10 @@ class Collect extends MY_Controller {
 		}
 		echo 0;
 		return;
+	}
+
+	public function check($type)
+	{
+		echo $this->collection_model->available_for_collect($this->user->id, $type) ? 1 : 0;
 	}
 }

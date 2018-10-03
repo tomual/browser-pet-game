@@ -25,7 +25,9 @@
                 <?php endforeach ?>
                 <img src="<?php echo item_image_url('t', $map->tree_id) ?>" class="tree">
                 <img src="<?php echo item_image_url('b', $map->bed_id) ?>" class="bed">
-                <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
+                <?php if (!empty($bean)): ?>
+                    <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
+                <?php endif ?>
             </div>
         </div>
         <div class="right">
