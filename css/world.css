@@ -96,8 +96,8 @@
     height: 117px;
     width: 209px;
     z-index: 1;
-    top: -430px;
-    left: 100px;
+    top: 150px;
+    left: 270px;
 }
 
 .world img {
@@ -123,4 +123,9 @@ img.bean {
     margin: auto;
     top: 60px;
     left: 50px;
+}
+
+.no-items {
+    color: #888;
+    font-size: 12px;
 }

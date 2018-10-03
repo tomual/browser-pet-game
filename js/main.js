@@ -315,6 +315,7 @@ function setToyboxButton(mode) {
 
 function addItemToToybox(item) {
     $('#toybox-' + getTypeLabel(item.type) + ' .icon-row').append('<a class="item icon" data-id="' + item.id + '" data-type="' + item.type + '"><img src="' + base_url + 'img/equip/' + item.type + item.id + '-icon.gif"></a>');
+    $('#toybox-' + getTypeLabel(item.type) + ' .icon-row .no-items').remove();
 }
 
 function updateChat() {
@@ -373,6 +374,11 @@ $(document).ready(function () {
     $.get("toybox/get", function (result) {
         toybox = result;
         types.forEach(function (type) {
+            console.log(type);
+            console.log(toybox[type].length);
+            if (!toybox[type].length) {
+                $('#toybox-' + type + ' .icon-row').append('<div class="no-items">You do not own any ' + type + '</div>');
+            }
             for (var i = 0; i < toybox[type].length; i++) {
                 $('#toybox-' + type + ' .icon-row').append('<a class="item icon" data-id="' + toybox[type][i].id + '" data-type="' + toybox[type][i].type + '"><img src="' + base_url + 'img/equip/' + toybox[type][i].type + toybox[type][i].id + '-icon.gif"></a>');
             }
