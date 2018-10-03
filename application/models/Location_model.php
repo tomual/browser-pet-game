@@ -11,9 +11,9 @@ class Location_model extends CI_Model {
     public function get_by_user_id($user_id) {
         $this->db->where('user_id', $user_id);
         $this->db->from('locations');
-        $home = $this->db->get()->first_row();
-        if($home) {
-            return $home;
+        $map = $this->db->get()->first_row();
+        if($map) {
+            return $map;
         }
         return null;
     }

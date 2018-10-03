@@ -21,7 +21,7 @@ class Chat extends MY_Controller
         $data = array(
             'message' => $message,
             'user_id' => $this->user->id,
-            'map_id'  => 6,
+            'map_id'  => $this->location_model->get_by_user_id($this->user->id)->map_id,
         );
         if ($this->form_validation->run() != false) {
             $message_id = $this->chat_model->create($data);

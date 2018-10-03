@@ -129,3 +129,18 @@ img.bean {
     color: #888;
     font-size: 12px;
 }
+
+#toybox {
+    margin-left: -200px;
+    margin-top: -300px;
+}
+
+#shop {
+    margin-left: -160px;
+    margin-top: -260px;
+}
+
+#travel {
+    margin-left: -120px;
+    margin-top: -220px;
+}

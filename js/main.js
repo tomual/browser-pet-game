@@ -10,6 +10,10 @@ if (pets.length) {
 
 }
 
+$('.window').on('click', function () {
+    $(this).css('z-index', ++windowZ);
+});
+
 $('.world').on('click', '.bean', function () {
     $('.bean').css('transform', 'scale(0)');
     setTimeout(function(){
