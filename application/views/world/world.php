@@ -1,4 +1,4 @@
-<?php $this->load->view('header') ?>
+<?php $this->load->view('header')?>
 <link href="<?php echo base_url('css/world.css') ?>" rel="stylesheet">
 
 <div class="game">
@@ -22,20 +22,20 @@
                         <img src="" class="hat">
                         <img src="" class="pet">
                     </div>
-                <?php endforeach ?>
+                <?php endforeach?>
                 <img src="<?php echo item_image_url('t', $map->tree_id) ?>" class="tree">
                 <img src="<?php echo item_image_url('b', $map->bed_id) ?>" class="bed">
                 <?php if (!empty($bean)): ?>
                     <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
-                <?php endif ?>
+                <?php endif?>
             </div>
         </div>
         <div class="right">
             <div class="chat">
                 <div class="messages">
-                    <?php foreach($chat as $message): ?>
+                    <?php foreach ($chat as $message): ?>
                         <div><b><?php echo $message->username ?></b>: <?php echo $message->message ?></div>
-                    <?php endforeach ?>
+                    <?php endforeach?>
                 </div>
                 <div class="form">
                     <div class="input-group">
@@ -159,7 +159,13 @@
         <a class="travel-link" href="<?php echo base_url('move/6') ?>"><li>My Room</li></a>
     </ul>
     <label>Search Room</label>
-    <input type="text" id="room_search">
+    <div class="search-map">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type a username" name="search">
+            <div class="input-group-append">
+                <button type="button" class="input-group-text btn">Search</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -172,4 +178,4 @@
     var baseUrl = '<?php echo base_url() ?>';
     var username = '<?php echo $this->user->username ?>';
 </script>
-<?php $this->load->view('footer') ?>
+<?php $this->load->view('footer')?>

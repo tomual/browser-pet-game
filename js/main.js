@@ -48,6 +48,16 @@ $('.chat button').on('click', function () {
     sendChat();
 });
 
+$(".search-map input").on('keyup', function (event) {
+    if (event.keyCode == 13) {
+        searchMap();
+    }
+});
+
+$('.search-map button').on('click', function () {
+    searchMap();
+});
+
 
 function sendChat() {
     var message = $('[name=message]').val();
@@ -57,6 +67,14 @@ function sendChat() {
         console.log(result);
     });
 }
+
+function searchMap() {
+    var keyword = $('[name=search]').val();
+    $.post("map/search", { keyword: keyword }, function (result) {
+        console.log(result);
+    });
+}
+
 $('.link').on('click', function () {
     var page = $(this).data('link');
     var win = '#' + $(this).closest('.window').attr('id');
