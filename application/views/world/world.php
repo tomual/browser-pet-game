@@ -151,12 +151,12 @@
     <div class="inner" id="travel-home" style="display:block">
     <h4>Public Rooms</h4>
     <ul>
-        <a class="travel-link" data-id="1"><li>Welcome Island</li></a>
-        <a class="travel-link" data-id="2"><li>Dog Park</li></a>
+        <a class="travel-link" href="<?php echo base_url('move/1') ?>"><li>Welcome Island</li></a>
+        <a class="travel-link" href="<?php echo base_url('move/2') ?>"><li>Dog Park</li></a>
     </ul>
     <h4>User Rooms</h4>
     <ul>
-        <a class="travel-link" data-id="6"><li>My Room</li></a>
+        <a class="travel-link" href="<?php echo base_url('move/6') ?>"><li>My Room</li></a>
     </ul>
     <label>Search Room</label>
     <input type="text" id="room_search">

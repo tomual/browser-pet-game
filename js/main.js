@@ -105,10 +105,6 @@ $('.icon-row').on('click', '.item', function () {
     $('#item').show();
 });
 
-$('.travel-link').on('click', function () {
-    console.log($(this).data('id'));
-});
-
 function itemOwned(type, item_id) {
     var owned = false;
     toybox[getTypeLabel(type)].forEach(function (item) {
