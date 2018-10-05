@@ -9,9 +9,8 @@ class Map extends MY_Controller
     }
     public function search()
     {
-		$results = array(
-			array( 'name' => 'codeafin', 'map_id' => 1)
-		);
+        $keyword = $this->input->post('keyword');
+		$results = $this->map_model->search_by_username($keyword);
         header('Content-Type: application/json');
         echo json_encode($results);
     }

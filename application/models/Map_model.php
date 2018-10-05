@@ -41,4 +41,13 @@ class Map_model extends CI_Model {
         $this->db->update('maps');
         return $this->db->affected_rows();
     }
+
+    public function search_by_username($keyword) {
+        $this->db->select('username, maps.id');
+        $this->db->like('username', $keyword);
+        $this->db->from('users');
+        $this->db->join('maps', 'maps.user_id = users.id', 'left');
+        $map = $this->db->get()->result();
+        return $map;
+    }
 }

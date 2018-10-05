@@ -161,7 +161,7 @@
     <label>Search Room</label>
     <div class="search-map">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type a username" name="search">
+            <input type="text" class="form-control" placeholder="Type a username" name="keyword">
             <div class="input-group-append">
                 <button type="button" class="input-group-text btn">Search</button>
             </div>

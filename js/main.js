@@ -69,7 +69,7 @@ function sendChat() {
 }
 
 function searchMap() {
-    var keyword = $('[name=search]').val();
+    var keyword = $('[name=keyword]').val();
     $.post("map/search", { keyword: keyword }, function (result) {
         console.log(result);
     });
