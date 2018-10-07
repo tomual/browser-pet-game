@@ -123,6 +123,7 @@ img.bean {
     margin: auto;
     top: 60px;
     left: 50px;
+    z-index: 2;
 }
 
 .no-items {
@@ -143,4 +144,20 @@ img.bean {
 #travel {
     margin-left: -120px;
     margin-top: -220px;
+}
+
+#travel input {
+    background: transparent;
+    color: #ccc;
+    border: none;
+    border: 1px solid #999;
+    border-radius: 0;
+}
+
+#travel .btn {
+    background: transparent;
+    color: #ccc;
+    border: none;
+    border: 1px solid #999;
+    border-radius: 0;
 }

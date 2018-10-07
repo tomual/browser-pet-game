@@ -58,6 +58,10 @@ $('.search-map button').on('click', function () {
     searchMap();
 });
 
+function welcomeChat() {
+    var message = 'Welcome to Cocobox!';
+    $('.messages').append("<div class='text-muted'>" + message + "</div>");
+}
 
 function sendChat() {
     var message = $('[name=message]').val();
@@ -72,7 +76,22 @@ function searchMap() {
     var keyword = $('[name=keyword]').val();
     $.post("map/search", { keyword: keyword }, function (result) {
         console.log(result);
+        displaySearchMapResults(keyword, result);
+        $('[name=keyword]').val('');
     });
+}
+
+function displaySearchMapResults(keyword, result) {
+    $('#travel .results').empty();
+    $('#travel .results').append("<label>Rooms for \"" + keyword + "\"</label>");
+    var list = $("#travel .results").append('<ul></ul>').find('ul');
+    for (let i = 0; i < result.length; i++) {
+        const room = result[i];
+        list.append("<li><a href='" + base_url + 'move/' + room.id + "'>" + room.username + "</a></li>");
+    }
+    if(result.length == 0) {
+        list.append("<li class='text-muted'>No rooms found</li>");
+    }
 }
 
 $('.link').on('click', function () {
@@ -319,6 +338,7 @@ function openToybox() {
 function openTravel() {
     $('#travel').fadeIn('fast');
     $('#travel').css('z-index', ++windowZ);
+    $('#travel [name=keyword]').focus(  );
 }
 
 function setToyboxButton(mode) {
@@ -339,6 +359,7 @@ function addItemToToybox(item) {
 function updateChat() {
     $.get("chat/get", function (result) {
         $('.messages').empty();
+        welcomeChat();
         for (var i = 0; i < result.length; i++) {
             $('.messages').append("<div><b>" + result[i].username + "</b>: " + result[i].message + "</div>");
         }
@@ -402,4 +423,5 @@ $(document).ready(function () {
             }
         });
     })
+
 });

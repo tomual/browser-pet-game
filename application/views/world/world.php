@@ -33,6 +33,7 @@
         <div class="right">
             <div class="chat">
                 <div class="messages">
+                    <div class="text-muted">Welcome to Cocobox!</div>
                     <?php foreach ($chat as $message): ?>
                         <div><b><?php echo $message->username ?></b>: <?php echo $message->message ?></div>
                     <?php endforeach?>
@@ -151,13 +152,14 @@
     <div class="inner" id="travel-home" style="display:block">
     <h4>Public Rooms</h4>
     <ul>
-        <a class="travel-link" href="<?php echo base_url('move/1') ?>"><li>Welcome Island</li></a>
-        <a class="travel-link" href="<?php echo base_url('move/2') ?>"><li>Dog Park</li></a>
+        <li><a class="travel-link" href="<?php echo base_url('move/1') ?>">Welcome Island</a></li>
+        <li><a class="travel-link" href="<?php echo base_url('move/2') ?>">Dog Park</a></li>
     </ul>
     <h4>User Rooms</h4>
     <ul>
-        <a class="travel-link" href="<?php echo base_url('move/6') ?>"><li>My Room</li></a>
+        <li><a class="travel-link" href="<?php echo base_url('move/6') ?>">My Room</a></li>
     </ul>
+    <hr>
     <label>Search Room</label>
     <div class="search-map">
         <div class="input-group">
@@ -167,10 +169,11 @@
             </div>
         </div>
     </div>
+    <div class="results mt-2">
+    </div>
 </div>
 
 <script>
-
     var map = <?php echo json_encode($map) ?>;
     var pet = <?php echo json_encode($pet) ?>;
     var pets = <?php echo json_encode($pets) ?>;
