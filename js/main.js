@@ -38,8 +38,36 @@ function animateBeanCount(addened) {
         });
 }
 
+$(document).keyup(function(e) {
+    if (e.key === "Escape") {
+        if ($('.window:visible').length) {
+            var windowToClose = getFrontWindowName();
+            $('#' + windowToClose).fadeOut('fast');
+        }
+    }
+});
+
+function getFrontWindowName() {
+    var windowsz = {
+        shop: $('#shop:visible').css('z-index'),
+        toybox: $('#toybox:visible').css('z-index'),
+        travel: $('#travel:visible').css('z-index')
+    }
+    var sortable = [];
+    for (var vehicle in windowsz) {
+        sortable.push([vehicle, windowsz[vehicle]]);
+    }
+
+    sortable.sort(function(a, b) {
+        if (!a[1]) a[1] = 0;
+        if (!b[1]) b[1] = 0;
+        return a[1] - b[1];
+    });
+    return sortable[sortable.length - 1][0];
+}
+
 $(".chat input").on('keyup', function (event) {
-    if (event.keyCode == 13) {
+    if (event.key == 13) {
         sendChat();
     }
 });
@@ -49,7 +77,7 @@ $('.chat button').on('click', function () {
 });
 
 $(".search-map input").on('keyup', function (event) {
-    if (event.keyCode == 13) {
+    if (event.key == 13) {
         searchMap();
     }
 });
