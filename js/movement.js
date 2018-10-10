@@ -36,6 +36,7 @@ $( document ).ready(function() {
     updatePetZIndex(pet.user_id);
     for (var i = pets.length - 1; i >= 0; i--) {
         updatePetImage(pets[i].user_id, pets[i].gif.idle);
+        updateHatImage(pets[i].user_id, pets[i].gif.hat.idle);
         updatePetZIndex(pets[i].user_id);
     }
     window.setInterval(function(){
