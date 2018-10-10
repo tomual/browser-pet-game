@@ -19,7 +19,7 @@ class Location_model extends CI_Model {
     }
 
     public function get_pets_in_map($map_id) {
-        $this->db->select('locations.*, race_id');
+        $this->db->select('locations.*, race_id, hat_id');
         $this->db->where('map_id', $map_id);
         $this->db->where('user_id !=', $this->user->id);
         $this->db->from('locations');

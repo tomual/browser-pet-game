@@ -69,4 +69,12 @@ class Map extends MY_Controller
         echo 0;
         return;
     }
+
+    public function info()
+    {
+        $location = $this->location_model->get_by_user_id($this->user->id);
+        $pets = $this->location_model->get_pets_in_map($location->id);
+        header('Content-Type: application/json');
+        echo json_encode($pets);
+    }
 }

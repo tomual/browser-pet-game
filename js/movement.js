@@ -44,7 +44,7 @@ $( document ).ready(function() {
 });
 
 function randomWalk() {
-    var all_pets = pets;
+    var all_pets = pets.slice();
     all_pets.push(pet);
     target = all_pets[getRandomInt(pets.length - 1)];
     if(getRandomInt(2)) {

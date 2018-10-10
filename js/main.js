@@ -67,7 +67,7 @@ function getFrontWindowName() {
 }
 
 $(".chat input").on('keyup', function (event) {
-    if (event.key == 13) {
+    if (event.key == 'Enter') {
         sendChat();
     }
 });
@@ -77,7 +77,7 @@ $('.chat button').on('click', function () {
 });
 
 $(".search-map input").on('keyup', function (event) {
-    if (event.key == 13) {
+    if (event.key == 'Enter') {
         searchMap();
     }
 });
@@ -408,6 +408,32 @@ function updateBean() {
     }
 }
 
+function updatePets() {
+    $.get("map/info", function (result) {
+        for (let i = 0; i < result.length; i++) {
+            for (let j = 0; j < pets.length; j++) {
+                if (pets[j].user_id == result[i].user_id) {
+                    pets[j] = result[i];
+                }
+            }
+        }
+
+        for (var i = pets.length - 1; i >= 0; i--) {
+            pets[i].gif = {};
+            pets[i].gif.idle = baseUrl + 'img/pet/' + pets[i].race_id + '.gif';
+            pets[i].gif.walk =  baseUrl + 'img/pet/' + pets[i].race_id + '_walk.gif';
+            pets[i].gif.hat = {};
+            if(pets[i].hat_id) {
+                pets[i].gif.hat.idle = baseUrl + 'img/equip/h' + pets[i].hat_id + '.gif';
+                pets[i].gif.hat.walk = baseUrl + 'img/equip/h' + pets[i].hat_id + '_walk.gif';
+            } else {
+                pets[i].gif.hat.idle = null;
+                pets[i].gif.hat.walk = null;
+            }
+        }
+    })
+}
+
 $(document).ready(function () {
 
     // Get chat messages
@@ -417,7 +443,11 @@ $(document).ready(function () {
 
     window.setInterval(function () {
         updateBean();
-    }, 2000);
+    }, 10000);
+
+    window.setInterval(function () {
+        updatePets();
+    }, 4000);
     
     // Init draggable windows
     $(".window").draggable({
