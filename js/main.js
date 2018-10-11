@@ -410,12 +410,23 @@ function updateBean() {
 
 function updatePets() {
     $.get("map/info", function (result) {
-        for (let i = 0; i < result.length; i++) {
-            for (let j = 0; j < pets.length; j++) {
-                if (pets[j].user_id == result[i].user_id) {
-                    pets[j] = result[i];
+        for (let i = 0; i < pets.length; i++) {
+            const element = pets[i];
+            var present = false;
+            for (let j = 0; j < result.length; j++) {
+                if (pets[i].user_id == result[j].user_id) {
+                    pets[i] = result[j];
+                    result.splice(j, 1);
+                    present = true;
                 }
             }
+            if (!present) {
+                pets.splice(i, 1);
+            }
+        }
+
+        for (let i = 0; i < result.length; i++) {
+            pets.push(result[i]);
         }
 
         for (var i = pets.length - 1; i >= 0; i--) {
@@ -431,6 +442,7 @@ function updatePets() {
                 pets[i].gif.hat.walk = null;
             }
         }
+        console.log(pets);
     })
 }
 

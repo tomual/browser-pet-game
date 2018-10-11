@@ -41,13 +41,16 @@ $( document ).ready(function() {
     }
     window.setInterval(function(){
         randomWalk();
-    }, 8000);
+    }, 2400);
 });
 
 function randomWalk() {
     var all_pets = pets.slice();
     all_pets.push(pet);
-    target = all_pets[getRandomInt(pets.length - 1)];
+    var population = all_pets.length;
+    var target_index = getRandomInt(population - 1);
+    console.log(target_index);
+    target = all_pets[target_index];
     if(getRandomInt(2)) {
         walkX(target);
     } else {
