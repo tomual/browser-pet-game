@@ -161,3 +161,9 @@ img.bean {
     border: 1px solid #999;
     border-radius: 0;
 }
+
+.dog-park-tree {
+    z-index: 900;
+    top: -90px;
+    left: 250px;
+}

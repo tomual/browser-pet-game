@@ -10,6 +10,10 @@ class World extends Authenticated_Controller
         $pets = $this->location_model->get_pets_in_map($map->id);
         $chat = $this->chat_model->get_recent_by_map_id($map->id);
         $bean = $this->collection_model->available_for_collect($this->user->id, 'bean');
-        $this->load->view('world/world', compact('pet', 'map', 'chat', 'pets', 'bean'));
+        if ($map->type === 'npc') {
+            $this->load->view('world/' . $map->id, compact('pet', 'map', 'chat', 'pets'));
+        } else {
+            $this->load->view('world/world', compact('pet', 'map', 'chat', 'pets', 'bean'));
+        }
     }
 }

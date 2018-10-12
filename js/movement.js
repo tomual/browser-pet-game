@@ -49,7 +49,6 @@ function randomWalk() {
     all_pets.push(pet);
     var population = all_pets.length;
     var target_index = getRandomInt(population - 1);
-    console.log(target_index);
     target = all_pets[target_index];
     if(getRandomInt(2)) {
         walkX(target);

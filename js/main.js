@@ -408,6 +408,14 @@ function updateBean() {
     }
 }
 
+function petEnter(user_id) {
+    console.log(user_id);
+}
+
+function petExit(user_id) {
+    console.log(user_id);
+}
+
 function updatePets() {
     $.get("map/info", function (result) {
         for (let i = 0; i < pets.length; i++) {
@@ -421,12 +429,14 @@ function updatePets() {
                 }
             }
             if (!present) {
+                petExit(pets[i].user_id);
                 pets.splice(i, 1);
             }
         }
 
         for (let i = 0; i < result.length; i++) {
             pets.push(result[i]);
+            petEnter(result[i].user_id);
         }
 
         for (var i = pets.length - 1; i >= 0; i--) {
@@ -442,7 +452,6 @@ function updatePets() {
                 pets[i].gif.hat.walk = null;
             }
         }
-        console.log(pets);
     })
 }
 
