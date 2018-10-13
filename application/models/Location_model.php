@@ -8,6 +8,12 @@ class Location_model extends CI_Model {
         return $this->db->insert_id();
     }
 
+    public function is_home($user_id) {
+        $home = $this->home_model->get_by_user_id($user_id);
+        $locaton = $this->get_by_user_id($user_id);
+        return $location->map_id === $home->map_id;
+    }
+
     public function get_by_user_id($user_id) {
         $this->db->where('user_id', $user_id);
         $this->db->from('locations');

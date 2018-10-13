@@ -9,11 +9,13 @@ class Collect extends MY_Controller {
 	
 	public function bean()
 	{
-		$collected = $this->collection_model->collect($this->user->id, 'bean');
-		if($collected) {
-			$this->currency_model->add_beans($this->user->id, 12);
-			echo 1;
-			return;
+		if ($this->location_model->is_home($this->user->id)) {
+			$collected = $this->collection_model->collect($this->user->id, 'bean');
+			if($collected) {
+				$this->currency_model->add_beans($this->user->id, 12);
+				echo 1;
+				return;
+			}
 		}
 		echo 0;
 		return;
