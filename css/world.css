@@ -1,3 +1,12 @@
+body {
+    background: #14171B;
+}
+
+.game h1 {
+    font-size: 16px;
+    opacity: 0.8;
+    letter-spacing: 2px;
+}
 
 .game {
     width: 930px;
@@ -20,7 +29,7 @@
     height: 500px;
     width: 570px;
     overflow: hidden;
-    background: #242f3980;
+    background-color: #1C242D;
 }
 
 .chat {
@@ -30,6 +39,8 @@
     height: 500px;
     width: 340px;
     margin-left: 16px;
+    background-color: #1C242D;
+    font-size: 14px;
 }
 
 .form {
@@ -44,6 +55,7 @@
     border: none;
     border-top: 3px double #999;
     border-radius: 0;
+    font-size: 14px;
 }
 
 .chat .btn {
@@ -81,6 +93,14 @@
     color: #f25f5f;
     margin-top: 1rem;
     font-size: 80%;
+}
+
+.window .header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding-left: 5px;
 }
 
 .tree {
@@ -166,4 +186,17 @@ img.bean {
     z-index: 900;
     top: -90px;
     left: 250px;
+}
+
+.menu img {
+    max-width: 40px;
+}
+
+.menu a {
+    float: right;
+    font-size: 12px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #D0D1D1;
+    margin-right: 0.5rem;
 }

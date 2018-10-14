@@ -5,9 +5,9 @@
     <div class="top">
         <h1>cocobox</h1>
         <div class="menu">
-            <a href="#" onclick="openToybox()"><img src="<?php echo base_url('img/toybox.png') ?>"></a>
-            <a href="#" onclick="openShop()"><img src="<?php echo base_url('img/shop.png') ?>"></a>
-            <a href="#" onclick="openTravel()"><img src="<?php echo base_url('img/move.png') ?>"></a>
+            <a href="#" onclick="openToybox()"><img src="<?php echo base_url('img/toybox.png') ?>">toybox</a>
+            <a href="#" onclick="openShop()"><img src="<?php echo base_url('img/shop.png') ?>">shop</a>
+            <a href="#" onclick="openTravel()"><img src="<?php echo base_url('img/move.png') ?>">move</a>
         </div>
     </div>
     <div class="game-container">

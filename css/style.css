@@ -48,6 +48,8 @@ h2 {
 }
 .navbar-dark {
     background: #242F39;
+    padding: 0;
+    font-size: 14px;
 }
 .btn-primary {
     color: #fff;
@@ -96,7 +98,8 @@ label {
     margin-top: -300px;
     background: #242f39;
     border: 1px solid #CCC;
-    padding: 3px;
+    padding: 5px;
+    padding-top: 10px;
     cursor: move;
 }
 .inner {
@@ -182,6 +185,8 @@ label {
     padding: 1px 5px;
     line-height: 16px;
     cursor: default;
+    top: -3px;
+    position: relative;
 }
 
 /**/
