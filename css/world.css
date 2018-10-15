@@ -1,5 +1,5 @@
-body {
-    background: #14171B;
+.container {
+    max-width: 960px;
 }
 
 .game h1 {
@@ -189,7 +189,8 @@ img.bean {
 }
 
 .menu img {
-    max-width: 40px;
+    width: 40px;
+    height: 35px;
 }
 
 .menu a {
