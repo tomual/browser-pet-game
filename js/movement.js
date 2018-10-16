@@ -41,7 +41,7 @@ $( document ).ready(function() {
     }
     window.setInterval(function(){
         randomWalk();
-    }, 2400);
+    }, 8000);
 });
 
 function randomWalk() {

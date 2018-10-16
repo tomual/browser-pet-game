@@ -23,6 +23,10 @@ class Collect extends MY_Controller {
 
 	public function check($type)
 	{
-		echo $this->collection_model->available_for_collect($this->user->id, $type) ? 1 : 0;
+		if ($this->location_model->is_home($this->user->id)) {
+			echo $this->collection_model->available_for_collect($this->user->id, $type) ? 1 : 0;
+		}
+		echo 0;
+		return;
 	}
 }

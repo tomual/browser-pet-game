@@ -408,35 +408,54 @@ function updateBean() {
     }
 }
 
-function petEnter(user_id) {
+function petEnter(index) {
     console.log(user_id);
+    var target_pet = pets[index];
+    var pet_container = ' \
+    <div class="pet-container" data-user-id="' + target_pet.user_id + '" style="top: -100px"> \
+        <img src="" class="hat"> \
+        <img src="" class="pet"> \
+    </div>';
+    $('.world').append(pet_container);
+
+    pets[index].gif = {};
+    pets[index].gif.idle = baseUrl + 'img/pet/' + pets[index].race_id + '.gif';
+    pets[index].gif.walk =  baseUrl + 'img/pet/' + pets[index].race_id + '_walk.gif';
+    pets[index].gif.hat = {};
+    if(pets[index].hat_id) {
+        pets[index].gif.hat.idle = baseUrl + 'img/equip/h' + pets[index].hat_id + '.gif';
+        pets[index].gif.hat.walk = baseUrl + 'img/equip/h' + pets[index].hat_id + '_walk.gif';
+    } else {
+        pets[index].gif.hat.idle = null;
+        pets[index].gif.hat.walk = null;
+    }
 }
 
-function petExit(user_id) {
-    console.log(user_id);
+function petExit(index) {
+    console.log(index.user_id);
 }
 
 function updatePets() {
-    $.get("map/info", function (result) {
+    $.get("map/info", function (info_pets) {
         for (let i = 0; i < pets.length; i++) {
             const element = pets[i];
             var present = false;
-            for (let j = 0; j < result.length; j++) {
-                if (pets[i].user_id == result[j].user_id) {
-                    pets[i] = result[j];
-                    result.splice(j, 1);
+            for (let j = 0; j < info_pets.length; j++) {
+                if (pets[i].user_id == info_pets[j].user_id) {
+                    pets[i] = info_pets[j];
+                    info_pets.splice(j, 1);
                     present = true;
                 }
             }
             if (!present) {
-                petExit(pets[i].user_id);
+                petExit(i);
                 pets.splice(i, 1);
             }
         }
 
-        for (let i = 0; i < result.length; i++) {
-            pets.push(result[i]);
-            petEnter(result[i].user_id);
+        for (let i = 0; i < info_pets.length; i++) {
+            pets.push(info_pets[i]);
+            petEnter(i);
         }
 
         for (var i = pets.length - 1; i >= 0; i--) {
