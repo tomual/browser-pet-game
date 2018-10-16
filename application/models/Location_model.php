@@ -45,4 +45,17 @@ class Location_model extends CI_Model {
         $this->db->update('locations');
         return $this->db->affected_rows();
     }
+
+    public function check_in($user_id) {
+        $this->db->set('updated_at', date('Y-m-d H:i:s'));
+        $this->db->where('user_id', $user_id);
+        $this->db->update('locations');
+        return $this->db->affected_rows();
+    }
+
+    public function remove_location() {
+        $this->db->where('user_id', $user_id);
+        $this->db->delete('locations');
+        return $this->db->affected_rows();
+    }
 }

@@ -72,7 +72,7 @@ class Map extends MY_Controller
 
     public function info()
     {
-        $this->location_model->check_in();
+        $this->location_model->check_in($this->user->id);
         $location = $this->location_model->get_by_user_id($this->user->id);
         $pets = $this->location_model->get_pets_in_map($location->map_id);
         header('Content-Type: application/json');
