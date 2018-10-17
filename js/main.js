@@ -409,7 +409,6 @@ function updateBean() {
 }
 
 function petEnter(index) {
-    console.log(user_id);
     var target_pet = pets[index];
     var pet_container = ' \
     <div class="pet-container" data-user-id="' + target_pet.user_id + '" style="top: -100px"> \
@@ -418,21 +417,26 @@ function petEnter(index) {
     </div>';
     $('.world').append(pet_container);
 
-    pets[index].gif = {};
-    pets[index].gif.idle = baseUrl + 'img/pet/' + pets[index].race_id + '.gif';
-    pets[index].gif.walk =  baseUrl + 'img/pet/' + pets[index].race_id + '_walk.gif';
-    pets[index].gif.hat = {};
-    if(pets[index].hat_id) {
-        pets[index].gif.hat.idle = baseUrl + 'img/equip/h' + pets[index].hat_id + '.gif';
-        pets[index].gif.hat.walk = baseUrl + 'img/equip/h' + pets[index].hat_id + '_walk.gif';
+    target_pet.gif = {};
+    target_pet.gif.idle = baseUrl + 'img/pet/' + target_pet.race_id + '.gif';
+    target_pet.gif.walk =  baseUrl + 'img/pet/' + target_pet.race_id + '_walk.gif';
+    target_pet.gif.hat = {};
+    if(target_pet.hat_id) {
+        target_pet.gif.hat.idle = baseUrl + 'img/equip/h' + target_pet.hat_id + '.gif';
+        target_pet.gif.hat.walk = baseUrl + 'img/equip/h' + target_pet.hat_id + '_walk.gif';
     } else {
-        pets[index].gif.hat.idle = null;
-        pets[index].gif.hat.walk = null;
+        target_pet.gif.hat.idle = null;
+        target_pet.gif.hat.walk = null;
     }
+
+    updateHatImage(target_pet.user_id, target_pet.gif.hat.idle);
+    updatePetImage(target_pet.user_id, target_pet.gif.idle);
 }
 
 function petExit(index) {
-    console.log(index.user_id);
+    console.log("REMOVE THIS GUY");
+    var target_pet = pets[index];
+    $("[data-user-id=" + target_pet.user_id + "]").hide();
 }
 
 function updatePets() {
@@ -511,8 +515,6 @@ $(document).ready(function () {
     $.get("toybox/get", function (result) {
         toybox = result;
         types.forEach(function (type) {
-            console.log(type);
-            console.log(toybox[type].length);
             if (!toybox[type].length) {
                 $('#toybox-' + type + ' .icon-row').append('<div class="no-items">You do not own any ' + type + '</div>');
             }
