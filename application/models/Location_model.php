@@ -53,7 +53,7 @@ class Location_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function remove_location() {
+    public function remove_location($user_id) {
         $this->db->where('user_id', $user_id);
         $this->db->delete('locations');
         return $this->db->affected_rows();
