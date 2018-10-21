@@ -6,6 +6,9 @@ class World extends Authenticated_Controller
     {
         $pet = $this->pet_model->get($this->user->pet_id);
         $location = $this->location_model->get_by_user_id($this->user->id);
+        if (!$location) {
+            $location = $this->location_model->set_to_home($this->user->id);
+        }
         $map = $this->map_model->get($location->map_id);
         $pets = $this->location_model->get_pets_in_map($map->id);
         $chat = $this->chat_model->get_recent_by_map_id($map->id);

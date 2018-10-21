@@ -10,7 +10,7 @@ class Location_model extends CI_Model {
 
     public function is_home($user_id) {
         $home = $this->home_model->get_by_user_id($user_id);
-        $locaton = $this->get_by_user_id($user_id);
+        $location = $this->get_by_user_id($user_id);
         return $location->map_id === $home->map_id;
     }
 
@@ -36,13 +36,23 @@ class Location_model extends CI_Model {
 
     public function set_to_home($user_id) {
         $home = $this->home_model->get_by_user_id($user_id);
-        return $this->set($user_id, $home->map_id);
+        if ($this->set($user_id, $home->map_id)) {
+            return $home;
+        }
+        return null;
     }
 
     public function set($user_id, $map_id) {
         $this->db->set('map_id', $map_id);
         $this->db->where('user_id', $user_id);
         $this->db->update('locations');
+        if(!$this->db->affected_rows()) {
+            $data = array(
+                'map_id' => $map_id,
+                'user_id' => $user_id
+            );
+            $this->db->insert('locations', $data);
+        }
         return $this->db->affected_rows();
     }
 
