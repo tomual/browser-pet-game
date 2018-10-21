@@ -17,9 +17,9 @@ class User extends MY_Controller {
     public function signup()
     {
         if($this->input->method() == 'post') {
-            $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
-            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+            $this->form_validation->set_rules('username', 'Username', 'required|alpha_dash|is_unique[users.username]|min_length[3]|max_length[20]');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|max_length[254]');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[254]');
             $this->form_validation->set_rules('password2', 'Password Confirmation', 'required|matches[password]');
 
             if ($this->form_validation->run() !== FALSE)
@@ -48,8 +48,8 @@ class User extends MY_Controller {
     public function login()
     {
         if($this->input->method() == 'post') {
-            $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required|max_length[254]');
+            $this->form_validation->set_rules('password', 'Password', 'required|max_length[254]');
 
             if ($this->form_validation->run() !== FALSE)
             {
@@ -78,7 +78,7 @@ class User extends MY_Controller {
     public function forgot_password()
     {
         if($this->input->method() == 'post') {
-            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required|max_length[254]');
 
             if ($this->form_validation->run() !== FALSE)
             {

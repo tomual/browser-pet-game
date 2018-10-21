@@ -16,7 +16,7 @@ class Chat extends MY_Controller
     public function send()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('message', 'Message', 'trim|required|max_length[255]');
+        $this->form_validation->set_rules('message', 'Message', 'trim|required|min_length[1]|max_length[254]');
         $message = $this->input->post('message');
         $data = array(
             'message' => $message,

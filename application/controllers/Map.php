@@ -9,8 +9,16 @@ class Map extends MY_Controller
     }
     public function search()
     {
-        $keyword = $this->input->post('keyword');
-		$results = $this->map_model->search_by_username($keyword);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('keyword', 'Keyword', 'required|alpha_dash|is_unique[users.username]|min_length[3]|max_length[20]');
+        
+        if ($this->form_validation->run() !== FALSE)
+        {
+            $keyword = $this->input->post('keyword');
+            $results = $this->map_model->search_by_username($keyword);
+        } else {
+            $results = array('error' => 'Invalid keyword');
+        }
         header('Content-Type: application/json');
         echo json_encode($results);
     }
