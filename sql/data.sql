@@ -30,3 +30,6 @@ INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('11');
 INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('12');
 INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('13');
 INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('14');
+
+INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VALUES (1, 0, 13, 7, 11, 'npc');
+INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VALUES (2, 0, 12, NULL, 11, 'npc');
