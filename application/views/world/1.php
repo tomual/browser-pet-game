@@ -22,10 +22,10 @@
         </div>
         <div class="right">
             <div class="chat">
-                <div class="messages">
+                <div class="messages" id="messages">
                     <div class="text-muted">Welcome to Cocobox!</div>
                     <?php foreach ($chat as $message): ?>
-                        <div><b><?php echo $message->username ?></b>: <?php echo $message->message ?></div>
+                        <div><b><?php echo $message->username ?>:</b> <?php echo $message->message ?></div>
                     <?php endforeach?>
                 </div>
                 <div class="form">

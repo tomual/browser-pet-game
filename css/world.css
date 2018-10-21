@@ -77,12 +77,18 @@
 
 .messages {
     position: absolute;
+    line-height: 22px;
     bottom: 40px;
     overflow-x: hidden;
     overflow-y: auto;
     max-height: calc(100% - 40px);
     width: 100%;
     padding: .375rem .75rem;
+}
+
+.messages b {
+    display: inline-block;
+    padding-right: 5px;
 }
 
 .game-container {

@@ -93,11 +93,23 @@ function welcomeChat() {
 
 function sendChat() {
     var message = $('[name=message]').val();
-    $('.messages').append("<div><b>" + username + "</b>: " + message + "</div>");
-    $('[name=message]').val('');
-    $.post("chat/send", { message: message }, function (result) {
-        console.log(result);
-    });
+    if (validateChat()) {
+        $.post("chat/send", { message: message }, function (result) {
+            console.log(result);
+        });
+        message = message.replace(/</g, "&lt;");
+        message = message.replace(/>/g, "&gt;");
+        $('.messages').append("<div><b>" + username + ":</b> " + message + "</div>");
+        $('[name=message]').val('');
+    }
+}
+
+function validateChat() {
+    var message = $('[name=message]').val();
+    if (message.length > 0 && message.length < 255) {
+        return true;
+    }
+    return false;
 }
 
 function searchMap() {
@@ -389,8 +401,10 @@ function updateChat() {
         $('.messages').empty();
         welcomeChat();
         for (var i = 0; i < result.length; i++) {
-            $('.messages').append("<div><b>" + result[i].username + "</b>: " + result[i].message + "</div>");
+            $('.messages').append("<div><b>" + result[i].username + ":</b> " + result[i].message + "</div>");
         }
+        var messagesBox = document.getElementById("messages");
+        messagesBox.scrollTop = messagesBox.scrollHeight;
     })
 }
 
@@ -500,6 +514,10 @@ $(document).ready(function () {
         },
         cancel: ".inner"
     });
+
+    // Scroll to bottom of messages
+    var messagesBox = document.getElementById("messages");
+    messagesBox.scrollTop = messagesBox.scrollHeight;
 
     // Fetch shop
     $.get("shop/get", function (result) {

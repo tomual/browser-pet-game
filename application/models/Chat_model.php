@@ -16,6 +16,9 @@ class Chat_model extends CI_Model {
         $this->db->from('chat');
         $this->db->join('users', 'chat.user_id = users.id', 'left');
         $chat = $this->db->get()->result();
+        foreach ($chat as $index => $message) {
+            $chat[$index]->message = htmlentities($message->message);
+        }
         return $chat;
     }
 }

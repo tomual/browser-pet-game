@@ -16,7 +16,6 @@ class User_model extends CI_Model {
         if($user) {
             if(password_verify($password, $user->password)) {
                 $this->update_login($user);
-                $this->location_model->set_to_home($user->id);
                 return $user;
             }
         }
