@@ -13,9 +13,12 @@
                     <img src="" class="pet">
                 </div>
                 <?php foreach ($pets as $index => $otherpet): ?>
-                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: -100px">
-                        <img src="" class="hat">
-                        <img src="" class="pet">
+                    <?php $top = rand(-100, -20); ?>
+                    <?php $left = rand(-120, 120); ?>
+                    <?php $scale = rand(0, 1) ? -1 : 1; ?>
+                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: <?php echo $top ?>px; left: <?php echo $left ?>px">
+                        <img src="" style="transform: scaleX(<?php echo $scale ?>)" class="hat">
+                        <img src="" style="transform: scaleX(<?php echo $scale ?>)" class="pet">
                     </div>
                 <?php endforeach?>
             </div>

@@ -10,7 +10,7 @@ class Map extends MY_Controller
     public function search()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('keyword', 'Keyword', 'required|alpha_dash|is_unique[users.username]|min_length[3]|max_length[20]');
+        $this->form_validation->set_rules('keyword', 'Keyword', 'required|alpha_dash|min_length[3]|max_length[20]');
         
         if ($this->form_validation->run() !== FALSE)
         {

@@ -13,7 +13,8 @@
                     <img src="" class="pet">
                 </div>
                 <?php foreach ($pets as $index => $otherpet): ?>
-                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: -100px">
+                    <?php $top = rand(-100, -20); ?>
+                    <div class="pet-container" data-user-id="<?php echo $otherpet->user_id ?>" style="top: <?php echo $top ?>px">
                         <img src="" class="hat">
                         <img src="" class="pet">
                     </div>
