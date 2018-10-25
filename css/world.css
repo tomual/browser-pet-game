@@ -1,3 +1,7 @@
+body {
+    background-color: #181e23;
+}
+
 .container {
     max-width: 960px;
 }
@@ -143,6 +147,15 @@
     width: 163px;
     pointer-events: none;
 }
+
+.pet-container i {
+    font-size: 11px;
+    font-style: normal;
+    position: absolute;
+    bottom: -10px;
+    left: 70px;
+}
+
 img.bean {
     transition: all 1s;
     position: relative;
