@@ -21,4 +21,14 @@ class Inventory_model extends CI_Model
 
         return $result;
     }
+
+    public function has_item($user_id, $item_id) 
+    {
+        $this->db->where('user_id', $user_id);
+        $this->db->where('item_id', $item_id);
+        $this->db->from('inventory');
+        $item = $this->db->get()->first_row();
+
+        return $item;
+    }
 }
