@@ -53,7 +53,7 @@
                                 <a class="nav-link" href="<?php echo base_url('settings/edit') ?>"><?php echo $this->user->username ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url('user/logout') ?>" id="my-beans"><?php echo $this->currency_model->get_beans() ?></a>
+                                <a class="nav-link" id="my-beans"><?php echo $this->currency_model->get_beans() ?></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo base_url('user/logout') ?>">Log Out</a>

@@ -1,5 +1,4 @@
 <?php $this->load->view('world/world-header')?>
-
 <div class="game">
     <div class="top">
         <h1>cocobox</h1>

@@ -127,5 +127,6 @@
     var chat = <?php echo json_encode($chat) ?>;
     var baseUrl = '<?php echo base_url() ?>';
     var username = '<?php echo $this->user->username ?>';
+    var is_home = <?php echo $is_home ? '1' : '0' ?>;
 </script>
 <?php $this->load->view('footer')?>

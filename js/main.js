@@ -179,6 +179,11 @@ $('.icon-row').on('click', '.item', function () {
         $('#item .equip').show();
         $('#item .unequip').hide();
     }
+    if (item.type != 'h' && !is_home) {
+        $('#item .btn.buy').addClass('disabled');
+    } else {
+        $('#item .btn.buy').removeClass('disabled');
+    }
     $('#item').show();
 });
 
@@ -344,7 +349,7 @@ function updateHatImage(user_id, image) {
 }
 
 function unequipTree(tree_id) {
-    $('.tree').attr('src', null);
+    $('.tree').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 
     $.get("map/unequip/t", function (result) {
         map.tree_id = null;
@@ -353,7 +358,7 @@ function unequipTree(tree_id) {
 }
 
 function unequipBed(bed_id) {
-    $('.bed').attr('src', null);
+    $('.bed').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 
     $.get("map/unequip/b", function (result) {
         map.bed_id = null;

@@ -6,6 +6,7 @@ class Map extends MY_Controller
     {
         parent::__construct();
         $this->load->model('collection_model');
+        $this->load->model('inventory_model');
     }
     public function search()
     {
@@ -24,27 +25,31 @@ class Map extends MY_Controller
     }
     public function equip($item_id)
     {
-        $item = $this->item_model->get($item_id);
-        $location = $this->location_model->get_by_user_id($this->user->id);
-        $map_id = $location->map_id;
+        $is_home = $this->location_model->is_home($this->user->id);
+        $has_item = $this->inventory_model->has_item($this->user->id, $item_id);
+        if ($is_home && $has_item) {
+            $item = $this->item_model->get($item_id);
+            $home = $this->home_model->get_by_user_id($this->user->id);
+            $map_id = $home->map_id;
 
-        if ($item && $map_id) {
-            $equipped = null;
-            switch ($item->type) {
-                case 't':
-                    $equipped = $this->map_model->set_tree($map_id, $item_id);
-                    break;
-                case 'b':
-                    $equipped = $this->map_model->set_bed($map_id, $item_id);
-                    break;
-                case 'l':
-                    $equipped = $this->map_model->set_land($map_id, $item_id);
-                    break;
-            }
+            if ($item && $map_id) {
+                $equipped = null;
+                switch ($item->type) {
+                    case 't':
+                        $equipped = $this->map_model->set_tree($map_id, $item_id);
+                        break;
+                    case 'b':
+                        $equipped = $this->map_model->set_bed($map_id, $item_id);
+                        break;
+                    case 'l':
+                        $equipped = $this->map_model->set_land($map_id, $item_id);
+                        break;
+                }
 
-            if ($equipped) {
-                echo 1;
-                return;
+                if ($equipped) {
+                    echo 1;
+                    return;
+                }
             }
         }
         echo 0;
