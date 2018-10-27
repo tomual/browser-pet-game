@@ -3,12 +3,11 @@
 	
     <h2 class="my-5">Cocobox</h2>
 	<img src="<?php echo base_url('img/promo.png') ?>">
-	<!-- <h1>Adopt your pet today!</h1> -->
-	<!-- <p class="mb-4">Your island awaits! Pick one of our starting pets to get started. Dress your pet, interact with your pet, explore various maps, and more!</p> -->
-	<!-- <a href="" class="btn btn-primary btn-lg">Pick a pet</a> -->
-	<form method="post" action="<?php echo base_url('mailing') ?>">
-		<h1>Sign up for updates!</h1>
-		<p class="mb-4">Cocobox is a social idle pet game. You can pick your pet, own your own island, dress your pet and decorate your island. Cocobox is a browser game. We'll let you know when the alpha version of the game is up. <span class="text-muted">(Last updated June 9 2018)</span></p>
+	<h1>Adopt your pet today!</h1>
+	<p class="mb-4">Your island awaits! Cocobox is a social browser game. Dress your pet, interact with your pet, explore various maps, and more.</p>
+	<a href="" class="btn btn-primary btn-lg">Get my pet</a>
+	<form method="post" action="<?php echo base_url('mailing') ?>" class="m-5 p-5">
+		<h6 class="text-center mb-3">Sign up for updates!</h6>
 		<div class="form-group mb-3">
 			<?php alerts() ?>
 			<label class="form-label sr-only">Email</label>

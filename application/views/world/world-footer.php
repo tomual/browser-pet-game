@@ -3,13 +3,22 @@
     <div class="close-window float-right" onclick="closeWindow(this)">&times;</div>
     <div class="inner" id="shop-home" style="display:block">
         <h3>Select a category</h3>
+        <br>
         <div class="icon-row">
-            <a class="link" data-link="shop-hats"><div class="icon icon-lg">Hats</div></a>
-            <a class="link" data-link="shop-trees"><div class="icon icon-lg">Trees</div></a>
+            <a class="link" data-link="shop-hats">
+                <div class="icon icon-lg" style="background: url('<?php echo base_url('img/icons/shop-hat') ?>.png')"><div class="icon-label">Hats</div></div>
+            </a>
+            <a class="link" data-link="shop-trees">
+                <div class="icon icon-lg" style="background: url('<?php echo base_url('img/icons/shop-tree') ?>.png')"><div class="icon-label">Trees</div></div>
+            </a>
         </div>
         <div class="icon-row">
-            <a class="link" data-link="shop-beds"><div class="icon icon-lg">Beds</div></a>
-            <a class="link" data-link="shop-land"><div class="icon icon-lg">Land</div></a>
+            <a class="link" data-link="shop-beds">
+                <div class="icon icon-lg" style="background: url('<?php echo base_url('img/icons/shop-bed') ?>.png')"><div class="icon-label">Beds</div></div>
+            </a>
+            <a class="link" data-link="shop-land">
+                <div class="icon icon-lg" style="background: url('<?php echo base_url('img/icons/shop-land') ?>.png')"><div class="icon-label">Land</div></div>
+            </a>
         </div>
     </div>
     <div class="inner" id="shop-hats">

@@ -6,16 +6,24 @@ body {
     max-width: 960px;
 }
 
+.navbar-dark {
+    background: #181e23;
+}
+
 .game h1 {
     font-size: 16px;
     opacity: 0.8;
     letter-spacing: 2px;
+    padding: 0 0.5rem;
 }
 
 .game {
     width: 930px;
     margin: auto;
-    padding-top: 40px;
+    position: absolute;
+    top: 50%;
+    margin-top: -290px;
+    margin-left: 1rem;
 }
 
 .game h1 {
@@ -160,8 +168,6 @@ img.bean {
     transition: all 1s;
     position: relative;
     margin: auto;
-    top: 60px;
-    left: 50px;
     z-index: 2;
 }
 
@@ -219,4 +225,11 @@ img.bean {
     text-align: center;
     color: #D0D1D1;
     margin-right: 0.5rem;
+}
+
+.icon-label {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
 }

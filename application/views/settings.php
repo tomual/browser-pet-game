@@ -1,5 +1,5 @@
 <?php $this->load->view('header') ?>
-<div class="col-lg-4 offset-lg-4">
+<div class="col-lg-4 offset-lg-4 pt-5">
     <h1>Settings</h1>
     <?php alerts() ?>
     <form method="post">

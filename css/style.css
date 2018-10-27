@@ -30,6 +30,7 @@ body {
 }
 .form-control {
     border-radius: 40px;
+    font-size: 14px;
 }
 h1 {
     font-weight: 600;
@@ -74,14 +75,14 @@ h2 {
     padding: 0.5rem 1rem;
 }
 a, a:visited {
-    color: #4ba2d2;
+    color: #4fb6ef;
 }
 label {
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 12px;
     letter-spacing: 1px;
-    font-weight: 600;
 }
+
 /* WINDOWS */
 
 .window {
@@ -112,6 +113,7 @@ label {
     cursor: default;
     display: none;
     overflow: auto;
+    font-size: 14px;
 }
 .window .icon {
     height: 70px;
@@ -147,6 +149,7 @@ label {
     font-weight: 600;
     margin: 0;
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 .window small {
     font-size: 11px;
@@ -203,4 +206,8 @@ label {
 
 .owned {
     cursor: default;
+}
+
+.form-group {
+    margin-bottom: 2rem;
 }

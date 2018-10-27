@@ -59,7 +59,7 @@ class User extends MY_Controller {
                 if($user) {
                     $this->session->set_userdata('id', $user->id);
                     $this->session->set_userdata('user', $user);
-                    redirect(base_url());
+                    redirect('world');
                 } else {
                     $this->session->set_flashdata('error', 'Invalid login.');
                     redirect('user/login');
