@@ -4,6 +4,7 @@
     <i><?php echo $this->user->username ?></i>
 </div>
 <?php foreach ($pets as $index => $otherpet): ?>
+    <?php srand(date('s')) ?>
     <?php $top = rand(-100, -20); ?>
     <?php $left = rand(-120, 120); ?>
     <?php $scale = rand(0, 1) ? -1 : 1; ?>

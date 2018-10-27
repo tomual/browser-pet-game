@@ -17,7 +17,7 @@ class Collection_model extends CI_Model
 
     public function available_for_collect($user_id, $type)
     {
-        $this->db->select('MAX(collected_at) as collected_at');
+        $this->db->select('id, MAX(collected_at) as collected_at');
         $this->db->where('user_id', $user_id);
         $this->db->where('type', $type);
         $this->db->from('collections');
@@ -25,7 +25,7 @@ class Collection_model extends CI_Model
         $now = strtotime('now');
         $allowed_collection_time = strtotime('+1 day', strtotime($last_bean->collected_at));
         if (!$last_bean->collected_at || $allowed_collection_time < $now) {
-            return true;
+            return $last_bean;
         }
         return false;
     }

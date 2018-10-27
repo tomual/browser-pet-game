@@ -11,7 +11,11 @@
                 <img src="<?php echo item_image_url('t', $map->tree_id) ?>" class="tree">
                 <img src="<?php echo item_image_url('b', $map->bed_id) ?>" class="bed">
                 <?php if (!empty($bean)): ?>
-                    <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean">
+                    <?php srand($bean->id) ?>
+                    <?php $top = rand(60, 110); ?>
+                    <?php $left = rand(-110, 110); ?>
+                    <?php $scale = rand(0, 1) ? -1 : 1; ?>
+                    <img src="<?php echo base_url('img/loot/bean.png') ?>" class="bean"style="top: <?php echo $top ?>px; left: <?php echo $left ?>px">
                 <?php endif?>
             </div>
         </div>
