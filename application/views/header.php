@@ -9,12 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta http-equiv="cleartype" content="on">
 
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
-    <link rel="shortcut icon" sizes="196x196" href="img/touch/touch-icon-196x196.png">
-    <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('favicon.ico') ?>"/>
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
@@ -29,10 +24,8 @@
     <link href="<?php echo base_url('css/style.css') ?>" rel="stylesheet">
 </head>
 <body>
-    <?php if ($this->user): ?>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">cocobox</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,7 +36,11 @@
                         <a class="nav-link" href="<?php echo base_url() ?>">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('world') ?>">Game</a>
+                        <?php if ($this->user): ?>
+                            <a class="nav-link" href="<?php echo base_url('world') ?>">Game</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="<?php echo base_url('user/login') ?>">Game</a>
+                        <?php endif ?>
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
@@ -71,6 +68,5 @@
             </div>
         </div>
     </nav>
-    <?php endif ?>
     <main role="main" class="container">
         <div class="row">
