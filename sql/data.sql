@@ -1,35 +1,79 @@
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('h', 'Top Hat', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('h', 'Sprout', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('h', 'Propeller Hat', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('h', 'Halo', 'Description', '40');
+INSERT INTO `collections` (`id`, `user_id`, `type`, `collected_at`) VALUES
+	(14, 1, 'bean', '2018-10-03 18:48:20'),
+	(15, 1, 'bean', '2018-10-07 18:58:26'),
+	(16, 1, 'bean', '2018-10-09 22:22:22'),
+	(17, 2, 'bean', '2018-10-10 18:50:52'),
+	(18, 1, 'bean', '2018-10-11 15:43:32'),
+	(19, 1, 'bean', '2018-10-13 20:27:53'),
+	(21, 1, 'bean', '2018-10-21 18:00:12'),
+	(23, 1, 'bean', '2018-10-27 16:30:14');
 
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('t', 'Aspen Tree', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('t', 'Street Lamp', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('t', 'Sunflower', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('t', 'Willow Tree', 'Description', '40');
+INSERT INTO `currency` (`id`, `user_id`, `beans`) VALUES
+	(1, 1, 724),
+	(2, 2, 31),
 
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('b', 'Pillow', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('b', 'Wooden Chair', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('b', 'Bed', 'Description', '40');
+INSERT INTO `homes` (`id`, `user_id`, `map_id`) VALUES
+	(1, 1, 3),
+	(2, 2, 4),
 
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('l', 'Grassland', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('l', 'Crystal Cave', 'Description', '40');
-INSERT INTO `cocobox`.`items` (`type`, `name`, `description`, `price`) VALUES ('l', 'Tree Stump', 'Description', '40');
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`, `quantity`, `created_at`, `modified_at`) VALUES
+	(1, 1, 10, 1, '2018-10-03 18:48:35', '2018-10-03 18:48:35'),
+	(2, 1, 7, 1, '2018-10-03 18:49:29', '2018-10-03 18:49:29'),
+	(3, 1, 9, 1, '2018-10-03 18:51:27', '2018-10-03 18:51:27'),
+	(4, 1, 11, 1, '2018-10-03 18:51:29', '2018-10-03 18:51:29'),
+	(5, 1, 2, 1, '2018-10-03 19:07:38', '2018-10-03 19:07:38'),
+	(6, 2, 2, 1, '2018-10-10 19:04:23', '2018-10-10 19:04:23'),
+	(7, 2, 3, 1, '2018-10-10 22:01:05', '2018-10-10 22:01:05'),
+	(8, 1, 13, 1, '2018-10-11 17:52:22', '2018-10-11 17:52:22'),
+	(9, 1, 3, 1, '2018-10-12 18:39:01', '2018-10-12 18:39:01'),
+	(10, 1, 6, 1, '2018-10-27 15:12:15', '2018-10-27 15:12:15');
 
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('1');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('2');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('3');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('4');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('5');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('6');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('7');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('8');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('9');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('10');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('11');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('12');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('13');
-INSERT INTO `cocobox`.`shop` (`item_id`) VALUES ('14');
+INSERT INTO `items` (`id`, `type`, `name`, `description`, `price`, `created_at`, `modified_at`) VALUES
+	(1, 'h', 'Top Hat', 'Description', 20, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(2, 'h', 'Sprout', 'Description', 40, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(3, 'h', 'Propeller Hat', 'Description', 60, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(4, 'h', 'Halo', 'Description', 120, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(5, 't', 'Aspen Tree', 'Description', 10, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(6, 't', 'Street Lamp', 'Description', 40, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(7, 't', 'Sunflower', 'Description', 40, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(8, 't', 'Willow Tree', 'Description', 80, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(9, 'b', 'Pillow', 'Description', 10, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(10, 'b', 'Wooden Chair', 'Description', 40, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(11, 'b', 'Bed', 'Description', 80, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(12, 'l', 'Grassland', 'Description', 40, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(13, 'l', 'Crystal Cave', 'Description', 200, '2018-10-02 22:24:10', '2018-10-02 22:24:10'),
+	(14, 'l', 'Tree Stump', 'Description', 400, '2018-10-02 22:24:10', '2018-10-02 22:24:10');
 
-INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VALUES (1, 0, 13, 7, 11, 'npc');
-INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VALUES (2, 0, 12, NULL, 11, 'npc');
+INSERT INTO `locations` (`id`, `user_id`, `map_id`, `created_at`, `updated_at`) VALUES
+	(3, 3, 5, '2018-10-21 10:39:58', '2018-10-20 22:24:02'),
+	(14, 1, 3, '2018-10-21 12:02:51', '2018-10-27 04:34:40');
+
+INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VALUES
+	(1, 0, 13, 7, 11, 'npc'),
+	(2, 0, 12, NULL, 11, 'npc'),
+	(3, 1, 12, 6, 9, 'public'),
+	(4, 2, 12, NULL, NULL, 'public'),
+
+INSERT INTO `pets` (`id`, `user_id`, `race_id`, `hat_id`, `created_at`, `modified_at`) VALUES
+	(1, 1, 1, 3, '2018-10-02 22:24:23', '2018-10-12 18:39:04'),
+	(2, 2, 1, 2, '2018-10-10 18:50:46', '2018-10-17 17:14:07'),
+
+INSERT INTO `shop` (`id`, `item_id`, `created_at`) VALUES
+	(1, 1, '2018-10-02 22:24:10'),
+	(2, 2, '2018-10-02 22:24:10'),
+	(3, 3, '2018-10-02 22:24:10'),
+	(4, 4, '2018-10-02 22:24:10'),
+	(5, 5, '2018-10-02 22:24:10'),
+	(6, 6, '2018-10-02 22:24:10'),
+	(7, 7, '2018-10-02 22:24:10'),
+	(8, 8, '2018-10-02 22:24:10'),
+	(9, 9, '2018-10-02 22:24:10'),
+	(10, 10, '2018-10-02 22:24:10'),
+	(11, 11, '2018-10-02 22:24:10'),
+	(12, 12, '2018-10-02 22:24:10'),
+	(13, 13, '2018-10-02 22:24:10'),
+	(14, 14, '2018-10-02 22:24:10');
+
+INSERT INTO `users` (`id`, `group_id`, `pet_id`, `username`, `email`, `password`, `ip`, `user_agent`, `created_at`, `last_login`) VALUES
+	(1, 0, 1, 'cody', 'cody@mail.com', '$2y$10$u7Q/b/AIrRYoRAirarFnZeRchk68Bihp8vltH08a03vN701ld4.Ru', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36', '2018-10-02 22:24:23', '2018-10-26 18:40:07'),
+	(2, 0, 2, 'erika', 'erika@mail.org', '$2y$10$cvzVfhKA7sCcpYXPHnwCj.5LE6AMrB6jKcWcZlE9kFrn5vPGQxzR6', '::1', 'Mozilla/5.0 (Windows NT 6.1; rv:62.0) Gecko/20100101 Firefox/62.0', '2018-10-10 18:50:46', '2018-10-10 18:50:46'),
