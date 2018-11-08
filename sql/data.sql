@@ -10,11 +10,11 @@ INSERT INTO `collections` (`id`, `user_id`, `type`, `collected_at`) VALUES
 
 INSERT INTO `currency` (`id`, `user_id`, `beans`) VALUES
 	(1, 1, 724),
-	(2, 2, 31),
+	(2, 2, 31);
 
 INSERT INTO `homes` (`id`, `user_id`, `map_id`) VALUES
 	(1, 1, 3),
-	(2, 2, 4),
+	(2, 2, 4);
 
 INSERT INTO `inventory` (`id`, `user_id`, `item_id`, `quantity`, `created_at`, `modified_at`) VALUES
 	(1, 1, 10, 1, '2018-10-03 18:48:35', '2018-10-03 18:48:35'),
@@ -52,11 +52,11 @@ INSERT INTO `maps` (`id`, `user_id`, `land_id`, `tree_id`, `bed_id`, `type`) VAL
 	(1, 0, 13, 7, 11, 'npc'),
 	(2, 0, 12, NULL, 11, 'npc'),
 	(3, 1, 12, 6, 9, 'public'),
-	(4, 2, 12, NULL, NULL, 'public'),
+	(4, 2, 12, NULL, NULL, 'public');
 
 INSERT INTO `pets` (`id`, `user_id`, `race_id`, `hat_id`, `created_at`, `modified_at`) VALUES
 	(1, 1, 1, 3, '2018-10-02 22:24:23', '2018-10-12 18:39:04'),
-	(2, 2, 1, 2, '2018-10-10 18:50:46', '2018-10-17 17:14:07'),
+	(2, 2, 1, 2, '2018-10-10 18:50:46', '2018-10-17 17:14:07');
 
 INSERT INTO `shop` (`id`, `item_id`, `created_at`) VALUES
 	(1, 1, '2018-10-02 22:24:10'),
@@ -75,5 +75,5 @@ INSERT INTO `shop` (`id`, `item_id`, `created_at`) VALUES
 	(14, 14, '2018-10-02 22:24:10');
 
 INSERT INTO `users` (`id`, `group_id`, `pet_id`, `username`, `email`, `password`, `ip`, `user_agent`, `created_at`, `last_login`) VALUES
-	(1, 0, 1, 'cody', 'cody@mail.com', '$2y$10$u7Q/b/AIrRYoRAirarFnZeRchk68Bihp8vltH08a03vN701ld4.Ru', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36', '2018-10-02 22:24:23', '2018-10-26 18:40:07'),
-	(2, 0, 2, 'erika', 'erika@mail.org', '$2y$10$cvzVfhKA7sCcpYXPHnwCj.5LE6AMrB6jKcWcZlE9kFrn5vPGQxzR6', '::1', 'Mozilla/5.0 (Windows NT 6.1; rv:62.0) Gecko/20100101 Firefox/62.0', '2018-10-10 18:50:46', '2018-10-10 18:50:46'),
+	(1, 0, 1, 'test', 'test@mail.com', '$2y$10$u7Q/b/AIrRYoRAirarFnZeRchk68Bihp8vltH08a03vN701ld4.Ru', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36', '2018-10-02 22:24:23', '2018-10-26 18:40:07'),
+	(2, 0, 2, 'friend', 'friend@mail.com', '$2y$10$cvzVfhKA7sCcpYXPHnwCj.5LE6AMrB6jKcWcZlE9kFrn5vPGQxzR6', '::1', 'Mozilla/5.0 (Windows NT 6.1; rv:62.0) Gecko/20100101 Firefox/62.0', '2018-10-10 18:50:46', '2018-10-10 18:50:46');
