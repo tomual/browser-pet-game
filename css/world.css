@@ -161,7 +161,8 @@ body {
     font-style: normal;
     position: absolute;
     bottom: -13px;
-    left: 62px;
+    width: 100%;
+    text-align: center;
 }
 
 img.bean {

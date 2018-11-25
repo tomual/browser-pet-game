@@ -116,8 +116,8 @@ class User extends MY_Controller {
         $this->load->view('users/reset_password');
     }
 
-    public function initialize($user_id) {
-
+    public function initialize($user_id) 
+    {
         $data = array(
             'user_id' => $user_id, 
             'race_id' => 1
@@ -143,5 +143,6 @@ class User extends MY_Controller {
         );
         $this->home_model->create($data);
 
+        $this->currency_model->add_beans($user_id, 70);
     }
 }
