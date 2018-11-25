@@ -95,7 +95,6 @@ function sendChat() {
     var message = $('[name=message]').val();
     if (validateChat()) {
         $.post("chat/send", { message: message }, function (result) {
-            console.log(result);
         });
         message = message.replace(/</g, "&lt;");
         message = message.replace(/>/g, "&gt;");

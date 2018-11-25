@@ -44,10 +44,11 @@ class Location_model extends CI_Model {
     }
 
     public function set($user_id, $map_id) {
-        $this->db->set('map_id', $map_id);
-        $this->db->where('user_id', $user_id);
-        $this->db->update('locations');
-        if(!$this->db->affected_rows()) {
+        if ($this->get_by_user_id($user_id)) {
+            $this->db->set('map_id', $map_id);
+            $this->db->where('user_id', $user_id);
+            $this->db->update('locations');
+        } else {
             $data = array(
                 'map_id' => $map_id,
                 'user_id' => $user_id
