@@ -9,7 +9,7 @@ class Monitor extends MY_Controller {
         $this->load->model('monitor_model');
     }
 
-    public function index()
+    public function forever()
 	{
         if (is_cli()) {
             while(1) {
@@ -18,4 +18,11 @@ class Monitor extends MY_Controller {
             }
         }
 	}
+
+    public function once()
+    {
+        if (is_cli()) {
+            $this->monitor_model->expire_users();
+        }
+    }
 }
